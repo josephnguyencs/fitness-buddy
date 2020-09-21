@@ -113,5 +113,16 @@
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.10.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephnguyencs/fitness-buddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephnguyencs/fitness-buddy/issues"
+  },
+  "homepage": "https://github.com/josephnguyencs/fitness-buddy#readme"
 }
