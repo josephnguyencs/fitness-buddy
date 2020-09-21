@@ -64,7 +64,12 @@ app.get('/api/routine/:exerciseId', (req, res, next) => {
 app.post('/api/routine', (req, res, next) => {
   const name = req.body.name;
   const desc = req.body.desc;
-  const dayId = req.body.dayId;
+  const dayId = parseInt(req.body.dayId, 10);
+  if (!Number.isInteger(dayId) || dayId <= 0) {
+    return res.status(400).json({
+      error: 'dayId must be a positive integer'
+    });
+  }
   if (name && desc && dayId) {
     const sql = `
   insert into "exercise" ("name", "description")
@@ -74,25 +79,25 @@ app.post('/api/routine', (req, res, next) => {
     const params = [name, desc];
     db.query(sql, params)
       .then(result1 => {
-        const exerciseId = result1.rows[0];
+        const exerciseId = result1.rows[0].exerciseId;
         const sql2 = `
         insert into "dayExercise" ("dayId", "exerciseId")
         values ($1, $2)
         returning *
         `;
         const params2 = [dayId, exerciseId];
-        db.query(sql2, params2)
+        return db.query(sql2, params2)
           .then(result2 => {
-            console.log(result2);
+            res.json(result2.rows[0]);
           });
       })
       .catch(err => next(err));
-  } else if (name) {
-    res.status(400).json('need a description');
-  } else if (desc) {
+  } else if (!name) {
     res.status(400).json('need a name');
+  } else if (!desc) {
+    res.status(400).json('need a description');
   } else {
-    res.status(400).json('need a name and a description');
+    res.status(400).json('invalid input');
   }
 });
 
