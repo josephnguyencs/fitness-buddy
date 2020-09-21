@@ -1,17 +1,20 @@
 import React from 'react';
 
-function defaultAndCustomModal() {
+function DefaultAndCustomModal() {
 
   return (
     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div className="col">
-        <h5 className="text-center mb-5">Add Entry</h5>
-        <button className="btn btn-success btn-block mb-3 mx-auto col-3">Default</button>
-        <button className="btn btn-success btn-block mb-3 mx-auto col-3">Custom</button>
-        <button className="btn btn-danger btn-block mx-auto col-2">Cancel</button>
+      <div className="card">
+        <div className="card-header text-center">Add Entry</div>
+        <div className="card-body">
+          <p className="card-text">Choose Default or Custom</p>
+          <a href="#" className="btn btn-success btn-block">Default</a>
+          <a href="#" className="btn btn-success btn-block">Custom</a>
+          <a href="#" className="btn btn-danger btn-block col-5 mx-auto">Cancel</a>
+        </div>
       </div>
     </div>
   );
 }
 
-export default defaultAndCustomModal;
+export default DefaultAndCustomModal;
