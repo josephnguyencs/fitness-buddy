@@ -151,7 +151,7 @@ CREATE TABLE public.exercise (
     "exerciseId" integer NOT NULL,
     name text NOT NULL,
     description text NOT NULL,
-    "default" text DEFAULT 'true'::text
+    "default" text DEFAULT 'false'::text
 );
 
 
