@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './header';
+import Table from './table';
+import TableDays from './table-days';
 
-export default class App extends React.Component {
+class App extends React.Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -27,7 +29,11 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
+        <TableDays />
+        <Table />
       </div>
     );
   }
 }
+
+export default App;

@@ -289,6 +289,13 @@ ALTER TABLE ONLY public."user" ALTER COLUMN "userId" SET DEFAULT nextval('public
 --
 
 COPY public."bodyPart" ("bodyPartId", name) FROM stdin;
+1	Chest
+2	Back
+3	Shoulders
+4	Biceps
+5	Legs
+6	Abs
+7	Triceps
 \.
 
 
@@ -297,6 +304,13 @@ COPY public."bodyPart" ("bodyPartId", name) FROM stdin;
 --
 
 COPY public.day ("dayId", name, "routineId") FROM stdin;
+1	Sunday	1
+2	Monday	1
+3	Tuesday	1
+4	Wednesday	1
+5	Thursday	1
+6	Friday	1
+7	Saturday	1
 \.
 
 
@@ -313,6 +327,13 @@ COPY public."dayExercise" ("dayId", "exerciseId") FROM stdin;
 --
 
 COPY public.exercise ("exerciseId", name, description) FROM stdin;
+1	 testName	 testDescription
+2	 another	 more
+3	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.
+4	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.
+5	Upright Rows	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Lift the dumbbells straight upwards to your collarbone.
+6	Side Flies	Standing or sitting up straight, hold a dumbbell in each hand with your arms resting at your sides.Keep your chest up and your core braced, and look straight forward throughout the move. With your elbows slightly bent, raise the dumbbells until your arms are parallel with the floor.
+7	Forward Flies	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Raise the dumbbells in front of you until your arms are parallel with the floor.
 \.
 
 
@@ -321,6 +342,11 @@ COPY public.exercise ("exerciseId", name, description) FROM stdin;
 --
 
 COPY public."exerciseBodyPart" ("bodyPartId", "exerciseId") FROM stdin;
+3	3
+3	4
+3	5
+3	6
+3	7
 \.
 
 
@@ -329,6 +355,7 @@ COPY public."exerciseBodyPart" ("bodyPartId", "exerciseId") FROM stdin;
 --
 
 COPY public.routine ("routineId", "userId", "recommendedCalories") FROM stdin;
+1	1	0
 \.
 
 
@@ -337,6 +364,7 @@ COPY public.routine ("routineId", "userId", "recommendedCalories") FROM stdin;
 --
 
 COPY public."user" ("userId", "firstName", "lastName", email, password, "createdAt") FROM stdin;
+1	Michael	Poole	test@gmail.com	testpassword	2020-09-21 17:31:39.268283-05
 \.
 
 
@@ -344,14 +372,14 @@ COPY public."user" ("userId", "firstName", "lastName", email, password, "created
 -- Name: bodyPart_bodyPartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 1, false);
+SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 7, true);
 
 
 --
 -- Name: day_dayId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."day_dayId_seq"', 1, false);
+SELECT pg_catalog.setval('public."day_dayId_seq"', 7, true);
 
 
 --
@@ -365,14 +393,14 @@ SELECT pg_catalog.setval('public."exercise_exerciseId_seq"', 1, false);
 -- Name: routine_routineId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."routine_routineId_seq"', 1, false);
+SELECT pg_catalog.setval('public."routine_routineId_seq"', 1, true);
 
 
 --
 -- Name: user_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."user_userId_seq"', 1, false);
+SELECT pg_catalog.setval('public."user_userId_seq"', 1, true);
 
 
 --
