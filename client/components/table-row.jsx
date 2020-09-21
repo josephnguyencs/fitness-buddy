@@ -2,11 +2,13 @@ import React from 'react';
 
 function TableRow() {
   return (
-    <tbody>
-      <tr>
-        <td>push-ups</td>
-      </tr>
-    </tbody>
+    <div className="container">
+      <tbody>
+        <tr>
+          <td>push-ups</td>
+        </tr>
+      </tbody>
+    </div>
   );
 }
 
