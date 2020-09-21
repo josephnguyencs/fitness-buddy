@@ -150,7 +150,8 @@ ALTER SEQUENCE public."day_dayId_seq" OWNED BY public.day."dayId";
 CREATE TABLE public.exercise (
     "exerciseId" integer NOT NULL,
     name text NOT NULL,
-    description text NOT NULL
+    description text NOT NULL,
+    "default" text DEFAULT 'true'::text
 );
 
 
@@ -326,14 +327,14 @@ COPY public."dayExercise" ("dayId", "exerciseId") FROM stdin;
 -- Data for Name: exercise; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.exercise ("exerciseId", name, description) FROM stdin;
-1	 testName	 testDescription
-2	 another	 more
-3	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.
-4	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.
-5	Upright Rows	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Lift the dumbbells straight upwards to your collarbone.
-6	Side Flies	Standing or sitting up straight, hold a dumbbell in each hand with your arms resting at your sides.Keep your chest up and your core braced, and look straight forward throughout the move. With your elbows slightly bent, raise the dumbbells until your arms are parallel with the floor.
-7	Forward Flies	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Raise the dumbbells in front of you until your arms are parallel with the floor.
+COPY public.exercise ("exerciseId", name, description, "default") FROM stdin;
+1	 testName	 testDescription	true
+2	 another	 more	true
+3	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.	true
+4	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.	true
+5	Upright Rows	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Lift the dumbbells straight upwards to your collarbone.	true
+6	Side Flies	Standing or sitting up straight, hold a dumbbell in each hand with your arms resting at your sides.Keep your chest up and your core braced, and look straight forward throughout the move. With your elbows slightly bent, raise the dumbbells until your arms are parallel with the floor.	true
+7	Forward Flies	Standing up straight, hold a dumbbell in each hand with your arms relaxed in front of you, palms facing inwards. Keep your chest up and your core braced, and look straight forward throughout the move. Raise the dumbbells in front of you until your arms are parallel with the floor.	true
 \.
 
 
