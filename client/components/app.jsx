@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './header';
+import Table from './table';
 
-export default class App extends React.Component {
+class App extends React.Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -25,7 +26,12 @@ export default class App extends React.Component {
   // }
   render() {
     return (
-      <Header />
+      <div>
+        <Header />
+        <Table />
+      </div>
     );
   }
 }
+
+export default App;
