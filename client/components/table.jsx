@@ -25,7 +25,7 @@ class Table extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container border border-primary rounded">
         <table><TableRow /></table>
       </div>
     );
