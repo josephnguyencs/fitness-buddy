@@ -1,3 +1,10 @@
 .button {
-  margin: 0.25rem;
+  /* margin: 0.5rem 1.45rem 0.5rem 1.45rem; */
+  margin: 0.5rem;
+}
+
+.u-d-buttons {
+  position: relative;
+  left: 40rem;
+  margin: .25rem;
 }
