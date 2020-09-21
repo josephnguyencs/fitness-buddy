@@ -17,6 +17,12 @@ class Table extends React.Component {
   //   );
   // }
 
+  // fillTable() {
+  //   const tableData = this.state.todos.map(item => {
+  //     return { ...item };
+  //   });
+  // }
+
   render() {
     return (
       <div className="container">
