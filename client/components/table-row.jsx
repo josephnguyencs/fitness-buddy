@@ -26,15 +26,12 @@ class TableRow extends React.Component {
   }
 
   render() {
+    // console.log(this.props);
     return (
-      <div className="container">
-        <tbody>
-          <tr>
-            <td>push-ups</td>
-            <UpdateAndDelete onClick={this.handleClick}/>
-          </tr>
-        </tbody>
-      </div>
+      <tr>
+        <td>{this.props.name}</td>
+        <UpdateAndDelete onClick={this.handleClick}/>
+      </tr>
     );
   }
 }

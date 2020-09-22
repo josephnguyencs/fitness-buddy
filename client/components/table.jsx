@@ -5,8 +5,11 @@ class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      monday: [{ name: 'curls', description: 'curl it' }, { name: 'pushups', description: 'push' }]
-      // monday: null
+      monday: [
+        { name: 'curls', description: 'curl it', exerciseId: 1 },
+        { name: 'pushups', description: 'push', exerciseId: 2 },
+        { name: 'pull-ups', description: 'pull', exerciseId: 3 }
+      ]
     };
   }
 
@@ -17,16 +20,25 @@ class Table extends React.Component {
   //   );
   // }
 
-  // fillTable() {
-  //   const tableData = this.state.todos.map(item => {
-  //     return { ...item };
-  //   });
-  // }
-
   render() {
+    // fillTable() {
+    const tableData = this.state.monday.map(item => {
+      return (
+      // item.name;
+        <TableRow key={item.exerciseId} name={item.name}/>
+      );
+    });
+    // }
+    // console.log(tableData);
     return (
       <div className="container border border-primary rounded">
-        <table><TableRow /></table>
+        <table>
+          <tbody>
+            {/* <TableRow name={this.state.monday[0].name}/>
+          <TableRow name={this.state.monday[1].name}/> */}
+            {tableData}
+          </tbody>
+        </table>
       </div>
     );
   }
