@@ -16,6 +16,8 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+
+
 ALTER TABLE IF EXISTS ONLY public."user" DROP CONSTRAINT IF EXISTS user_pkey;
 ALTER TABLE IF EXISTS ONLY public.routine DROP CONSTRAINT IF EXISTS routine_pkey;
 ALTER TABLE IF EXISTS ONLY public.exercise DROP CONSTRAINT IF EXISTS exercise_pkey;
@@ -42,6 +44,7 @@ DROP SEQUENCE IF EXISTS public."customExercise_customExerciseId_seq";
 DROP TABLE IF EXISTS public."customExercise";
 DROP SEQUENCE IF EXISTS public."bodyPart_bodyPartId_seq";
 DROP TABLE IF EXISTS public."bodyPart";
+
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
@@ -70,6 +73,8 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
 
 
 SET default_tablespace = '';
