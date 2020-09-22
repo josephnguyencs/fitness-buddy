@@ -21,23 +21,15 @@ class Table extends React.Component {
   // }
 
   render() {
-    // fillTable() {
     const tableData = this.state.monday.map(item => {
       return (
-      // item.name;
-        <TableRow key={item.exerciseId} name={item.name}/>
+        <TableRow key={item.exerciseId} name={item.name} description={item.description}/>
       );
     });
-    // }
-    // console.log(tableData);
     return (
       <div className="container border border-primary rounded">
         <table>
-          <tbody>
-            {/* <TableRow name={this.state.monday[0].name}/>
-          <TableRow name={this.state.monday[1].name}/> */}
-            {tableData}
-          </tbody>
+          {tableData}
         </table>
       </div>
     );
