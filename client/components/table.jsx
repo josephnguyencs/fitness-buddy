@@ -26,11 +26,16 @@ class Table extends React.Component {
       );
     }
     return (
-      <div className="container border border-primary rounded">
-        <table>
-          {tableData}
-        </table>
-      </div>
+      <>
+        <div className="container border border-primary rounded">
+          <table>
+            {tableData}
+          </table>
+        </div>
+        <div className="row justify-content-center">
+          <button className="btn btn-success mt-5">Add Exercise</button>
+        </div>
+      </>
     );
   }
 
