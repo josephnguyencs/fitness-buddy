@@ -4,13 +4,13 @@ import Table from './table';
 import TableDays from './table-days';
 
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     message: null,
-  //     isLoading: true
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: null,
+      isLoading: true
+    };
+  }
 
   // componentDidMount() {
   //   fetch('/api/health-check')
