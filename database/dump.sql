@@ -20,11 +20,13 @@ ALTER TABLE IF EXISTS ONLY public."user" DROP CONSTRAINT IF EXISTS user_pkey;
 ALTER TABLE IF EXISTS ONLY public.routine DROP CONSTRAINT IF EXISTS routine_pkey;
 ALTER TABLE IF EXISTS ONLY public.exercise DROP CONSTRAINT IF EXISTS exercise_pkey;
 ALTER TABLE IF EXISTS ONLY public.day DROP CONSTRAINT IF EXISTS day_pkey;
+ALTER TABLE IF EXISTS ONLY public."customExercise" DROP CONSTRAINT IF EXISTS "customExercise_pkey";
 ALTER TABLE IF EXISTS ONLY public."bodyPart" DROP CONSTRAINT IF EXISTS "bodyPart_pkey";
 ALTER TABLE IF EXISTS public."user" ALTER COLUMN "userId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.routine ALTER COLUMN "routineId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.exercise ALTER COLUMN "exerciseId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.day ALTER COLUMN "dayId" DROP DEFAULT;
+ALTER TABLE IF EXISTS public."customExercise" ALTER COLUMN "customExerciseId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public."bodyPart" ALTER COLUMN "bodyPartId" DROP DEFAULT;
 DROP SEQUENCE IF EXISTS public."user_userId_seq";
 DROP TABLE IF EXISTS public."user";
@@ -36,6 +38,8 @@ DROP TABLE IF EXISTS public.exercise;
 DROP SEQUENCE IF EXISTS public."day_dayId_seq";
 DROP TABLE IF EXISTS public."dayExercise";
 DROP TABLE IF EXISTS public.day;
+DROP SEQUENCE IF EXISTS public."customExercise_customExerciseId_seq";
+DROP TABLE IF EXISTS public."customExercise";
 DROP SEQUENCE IF EXISTS public."bodyPart_bodyPartId_seq";
 DROP TABLE IF EXISTS public."bodyPart";
 DROP EXTENSION IF EXISTS plpgsql;
@@ -103,6 +107,37 @@ ALTER SEQUENCE public."bodyPart_bodyPartId_seq" OWNED BY public."bodyPart"."body
 
 
 --
+-- Name: customExercise; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."customExercise" (
+    "customExerciseId" integer NOT NULL,
+    name text NOT NULL,
+    description text NOT NULL
+);
+
+
+--
+-- Name: customExercise_customExerciseId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."customExercise_customExerciseId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: customExercise_customExerciseId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."customExercise_customExerciseId_seq" OWNED BY public."customExercise"."customExerciseId";
+
+
+--
 -- Name: day; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -119,7 +154,7 @@ CREATE TABLE public.day (
 
 CREATE TABLE public."dayExercise" (
     "dayId" integer NOT NULL,
-    "exerciseId" integer NOT NULL
+    "customExerciseId" integer NOT NULL
 );
 
 
@@ -258,6 +293,13 @@ ALTER TABLE ONLY public."bodyPart" ALTER COLUMN "bodyPartId" SET DEFAULT nextval
 
 
 --
+-- Name: customExercise customExerciseId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."customExercise" ALTER COLUMN "customExerciseId" SET DEFAULT nextval('public."customExercise_customExerciseId_seq"'::regclass);
+
+
+--
 -- Name: day dayId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -301,6 +343,14 @@ COPY public."bodyPart" ("bodyPartId", name) FROM stdin;
 
 
 --
+-- Data for Name: customExercise; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."customExercise" ("customExerciseId", name, description) FROM stdin;
+\.
+
+
+--
 -- Data for Name: day; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -319,9 +369,7 @@ COPY public.day ("dayId", name, "routineId") FROM stdin;
 -- Data for Name: dayExercise; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."dayExercise" ("dayId", "exerciseId") FROM stdin;
-1	3
-2	4
+COPY public."dayExercise" ("dayId", "customExerciseId") FROM stdin;
 \.
 
 
@@ -506,6 +554,13 @@ SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 7, true);
 
 
 --
+-- Name: customExercise_customExerciseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 1, false);
+
+
+--
 -- Name: day_dayId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -539,6 +594,14 @@ SELECT pg_catalog.setval('public."user_userId_seq"', 1, true);
 
 ALTER TABLE ONLY public."bodyPart"
     ADD CONSTRAINT "bodyPart_pkey" PRIMARY KEY ("bodyPartId");
+
+
+--
+-- Name: customExercise customExercise_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."customExercise"
+    ADD CONSTRAINT "customExercise_pkey" PRIMARY KEY ("customExerciseId");
 
 
 --
