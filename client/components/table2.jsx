@@ -14,9 +14,9 @@ class Table2 extends React.Component {
   }
 
   render() {
-    const tableData = this.state.exercises.map(item => {
+    const tableData = this.props.exercises.map(item => {
       return (
-        <TableRow2 key={item.exerciseId} name={item.name} />
+        <TableRow2 key={item.customExerciseId} name={item.exercise} />
       );
     });
     return (

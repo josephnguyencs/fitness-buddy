@@ -13,31 +13,16 @@ class Table extends React.Component {
     };
   }
 
-  // addMove(newMove) {
-  //   fetch('', { method: 'GET' }
-  //     .then(res => res.json())
-  //     .then(data => this.setState({ day: data }))
-  //   );
-  // }
-
   render() {
-    // fillTable() {
-    const tableData = this.state.monday.map(item => {
+    const tableData = this.props.exercises.map(item => {
       return (
-      // item.name;
-        <TableRow key={item.exerciseId} name={item.name}/>
+        <TableRow key={item.customExerciseId} name={item.exercise} description={item.description}/>
       );
     });
-    // }
-    // console.log(tableData);
     return (
       <div className="container border border-primary rounded">
         <table>
-          <tbody>
-            {/* <TableRow name={this.state.monday[0].name}/>
-          <TableRow name={this.state.monday[1].name}/> */}
-            {tableData}
-          </tbody>
+          {tableData}
         </table>
       </div>
     );
