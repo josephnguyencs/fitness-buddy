@@ -23,12 +23,12 @@ app.get('/api/routine/day/:dayId', (req, res, next) => {
   const dayId = req.params.dayId;
   const sql = `
   select "d"."name" as "day",
-         "e"."name" as "exercise",
-         "e"."description",
-         "e"."exerciseId"
+         "c"."name" as "exercise",
+         "c"."description",
+         "c"."exerciseId"
   from "day" as "d"
   join "dayExercise" using ("dayId")
-  join "exercise" as "e" using ("exerciseId")
+  join "customExercise" as "c" using ("exerciseId")
   where "dayId" = $1
   `;
   const params = [dayId];
@@ -75,20 +75,20 @@ app.post('/api/routine', (req, res, next) => {
   }
   if (name && desc && dayId) {
     const sql = `
-  insert into "exercise" ("name", "description")
+  insert into "customExercise" ("name", "description")
   values ($1, $2)
-  returning "exerciseId"
+  returning "customExerciseId"
   `;
     const params = [name, desc];
     db.query(sql, params)
       .then(result1 => {
-        const exerciseId = result1.rows[0].exerciseId;
+        const customExerciseId = result1.rows[0].customExerciseId;
         const sql2 = `
-        insert into "dayExercise" ("dayId", "exerciseId")
+        insert into "dayExercise" ("dayId", "customExerciseId")
         values ($1, $2)
         returning *
         `;
-        const params2 = [dayId, exerciseId];
+        const params2 = [dayId, customExerciseId];
         return db.query(sql2, params2)
           .then(result2 => {
             res.json(result2.rows[0]);
@@ -144,6 +144,10 @@ app.delete('/api/routine', (req, res, next) => {
       }
     })
     .catch(err => next(err));
+});
+
+app.put('/api/routine/:dayId', (req, res, next) => {
+
 });
 
 app.use('/api', (req, res, next) => {
