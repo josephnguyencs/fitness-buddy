@@ -57,6 +57,7 @@ class App extends React.Component {
     });
   }
 
+
   handleDefaultClick() {
     this.setState({
       view: 'default'
@@ -105,6 +106,7 @@ class App extends React.Component {
         </>
       );
     }
+
 
   }
 }
