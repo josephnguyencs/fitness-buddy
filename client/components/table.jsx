@@ -19,11 +19,22 @@ class Table extends React.Component {
         <TableRow key={item.customExerciseId} name={item.exercise} description={item.description}/>
       );
     });
+    const numberOfExercises = tableData.length;
+    if (numberOfExercises === 0) {
+      return (
+        <h1 className="text-center">No exercises added.</h1>
+      );
+    }
     return (
-      <div className="border border-primary rounded">
-        <table>
-          {tableData}
-        </table>
+      <div>
+        <div className="container border border-primary rounded">
+          <table>
+            {tableData}
+          </table>
+        </div>
+        <div className="row justify-content-center">
+          <button className="btn btn-success mt-5">Add Exercise</button>
+        </div>
       </div>
     );
   }
