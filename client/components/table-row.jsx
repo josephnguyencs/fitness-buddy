@@ -40,21 +40,27 @@ class TableRow extends React.Component {
   render() {
     // console.log(this.props);
     if (this.state.isClicked === true) {
-      // const remove = document.querySelector('hidden');
-      // remove.classList.remove('hidden');
-
+      return (
+        <tbody>
+          <tr>
+            <td onClick={this.showDescription}>{this.props.name}</td>
+            <UpdateAndDelete onClick={this.handleClick} />
+          </tr>
+          <tr>
+            <Description description={this.props.description} />
+          </tr>
+        </tbody>
+      );
+    } else {
+      return (
+        <tbody>
+          <tr>
+            <td onClick={this.showDescription}>{this.props.name}</td>
+            <UpdateAndDelete onClick={this.handleClick}/>
+          </tr>
+        </tbody>
+      );
     }
-    return (
-      <tbody>
-        <tr>
-          <td onClick={this.showDescription}>{this.props.name}</td>
-          <UpdateAndDelete onClick={this.handleClick}/>
-        </tr>
-        <tr>
-          <Description clicked={this.state.isClicked} description={this.props.description} />
-        </tr>
-      </tbody>
-    );
   }
 }
 
