@@ -20,7 +20,7 @@ class Table2 extends React.Component {
       );
     });
     return (
-      <div className="container">
+      <div>
         <table>
           <tbody>
             {tableData}

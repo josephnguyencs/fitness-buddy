@@ -16,8 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
-
 ALTER TABLE IF EXISTS ONLY public."user" DROP CONSTRAINT IF EXISTS user_pkey;
 ALTER TABLE IF EXISTS ONLY public.routine DROP CONSTRAINT IF EXISTS routine_pkey;
 ALTER TABLE IF EXISTS ONLY public.exercise DROP CONSTRAINT IF EXISTS exercise_pkey;
@@ -44,7 +42,6 @@ DROP SEQUENCE IF EXISTS public."customExercise_customExerciseId_seq";
 DROP TABLE IF EXISTS public."customExercise";
 DROP SEQUENCE IF EXISTS public."bodyPart_bodyPartId_seq";
 DROP TABLE IF EXISTS public."bodyPart";
-
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
@@ -73,8 +70,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 
 
 SET default_tablespace = '';
@@ -352,6 +347,10 @@ COPY public."bodyPart" ("bodyPartId", name) FROM stdin;
 --
 
 COPY public."customExercise" ("customExerciseId", name, description) FROM stdin;
+1	new mon exercise	mon description
+2	newest mon exercise	newest mon description
+3	sunday exercise	sunday description
+4	Tuesday exercise	Tuesday description
 \.
 
 
@@ -375,6 +374,10 @@ COPY public.day ("dayId", name, "routineId") FROM stdin;
 --
 
 COPY public."dayExercise" ("dayId", "customExerciseId") FROM stdin;
+2	1
+2	2
+1	3
+3	4
 \.
 
 
@@ -562,7 +565,7 @@ SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 7, true);
 -- Name: customExercise_customExerciseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 1, false);
+SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 4, true);
 
 
 --

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div className="container bg-dark">
+    <div className="bg-dark footer">
       <div className="navbar navbar-light bg-dark">
         <a className="navbar-brand" href="#">
           <i className="fas fa-calendar-alt fa-2x"></i>

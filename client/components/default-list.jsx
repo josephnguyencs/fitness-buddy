@@ -2,8 +2,9 @@ import React from 'react';
 import Header from './header';
 import TableDays from './table-days';
 
-function DefaultList() {
+function DefaultList(props) {
   return (
+    <>
     <div className="container">
       <Header />
       <TableDays />
@@ -25,6 +26,10 @@ function DefaultList() {
         </div>
       </div>
     </div>
+    <div className="row justify-content-center mt-5">
+      <button className="btn btn-danger" onClick={props.handleCancelClick}>Return To Planner</button>
+    </div>
+    </>
   );
 }
 
