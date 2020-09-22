@@ -4,7 +4,7 @@ import TableDays from './table-days';
 
 function DefaultList() {
   return (
-    <div className="container">
+    <div>
       <Header />
       <TableDays />
       <div className="card">

@@ -26,7 +26,7 @@ class Table extends React.Component {
       );
     }
     return (
-      <>
+      <div>
         <div className="container border border-primary rounded">
           <table>
             {tableData}
@@ -35,7 +35,7 @@ class Table extends React.Component {
         <div className="row justify-content-center">
           <button className="btn btn-success mt-5">Add Exercise</button>
         </div>
-      </>
+      </div>
     );
   }
 
