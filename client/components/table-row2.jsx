@@ -1,7 +1,7 @@
 import React from 'react';
 import UpdateAndDelete from './update-and-delete';
 
-class TableRow extends React.Component {
+class TableRow2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,4 +35,4 @@ class TableRow extends React.Component {
   }
 }
 
-export default TableRow;
+export default TableRow2;

@@ -9,11 +9,25 @@ class App extends React.Component {
     super(props);
     this.state = {
       day: '1',
+      exercises: [],
       message: null,
       isLoading: true
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.setExercises(this.state.day);
+  }
+
+  setExercises(dayId) {
+    fetch(`/api/routine/day/${dayId}`)
+      .then(result => result.json())
+      .then(data => this.setState({
+        exercises: data
+      }))
+      .catch(err => console.error(err));
   }
 
   setDay(dayId) {
@@ -25,6 +39,7 @@ class App extends React.Component {
   handleClick(event) {
     const dayId = event.currentTarget.getAttribute('id');
     this.setDay(dayId);
+    this.setExercises(dayId);
   }
 
   render() {
@@ -33,7 +48,7 @@ class App extends React.Component {
         <Header />
         <TableDays handleClick={this.handleClick}/>
         <Table />
-        {/* <Table2 /> */}
+        {/* <Table2 exercises={this.state.exercises} /> */}
       </div>
     );
   }
