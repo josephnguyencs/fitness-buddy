@@ -1,16 +1,16 @@
 import React from 'react';
 
-function TableDays() {
+function TableDays(props) {
 
   return (
     <div className="container">
-      <button type="button" className="btn btn-primary button">Sunday</button>
-      <button type="button" className="btn btn-primary button">Monday</button>
-      <button type="button" className="btn btn-primary button">Tuesday</button>
-      <button type="button" className="btn btn-primary button">Wednesday</button>
-      <button type="button" className="btn btn-primary button">Thursday</button>
-      <button type="button" className="btn btn-primary button">Friday</button>
-      <button type="button" className="btn btn-primary button">Saturday</button>
+      <button type="button" className="btn btn-primary button" id="1" onClick={props.handleClick}>Sunday</button>
+      <button type="button" className="btn btn-primary button" id="2" onClick={props.handleClick}>Monday</button>
+      <button type="button" className="btn btn-primary button" id="3" onClick={props.handleClick}>Tuesday</button>
+      <button type="button" className="btn btn-primary button" id="4" onClick={props.handleClick}>Wednesday</button>
+      <button type="button" className="btn btn-primary button" id="5" onClick={props.handleClick}>Thursday</button>
+      <button type="button" className="btn btn-primary button" id="6" onClick={props.handleClick}>Friday</button>
+      <button type="button" className="btn btn-primary button" id="7" onClick={props.handleClick}>Saturday</button>
     </div>
   );
 }
