@@ -13,6 +13,10 @@ class Table extends React.Component {
     };
   }
 
+  handleClick() {
+    this.props.handleClick('choose');
+  }
+
   render() {
     const tableData = this.props.exercises.map(item => {
       return (
@@ -33,7 +37,7 @@ class Table extends React.Component {
           </table>
         </div>
         <div className="row justify-content-center">
-          <button className="btn btn-success mt-5">Add Exercise</button>
+          <button className="btn btn-success mt-5" onClick={this.props.handleClick}>Add Exercise</button>
         </div>
       </div>
     );
