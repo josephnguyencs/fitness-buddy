@@ -3,8 +3,6 @@ import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
 
-// import Table2 from './table2';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,12 +46,7 @@ class App extends React.Component {
       <div>
         <Header />
         <TableDays handleClick={this.handleClick}/>
-
-        {/* <Table2 /> */}
-
         <Table exercises={this.state.exercises} />
-        {/* <Table2 exercises={this.state.exercises} /> */}
-
       </div>
     );
   }
