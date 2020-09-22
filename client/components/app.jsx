@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
+
 // import Table2 from './table2';
 
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
         <Header />
         <TableDays handleClick={this.handleClick}/>
         <Table />
+
         {/* <Table2 /> */}
       </div>
     );
