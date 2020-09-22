@@ -49,9 +49,9 @@ class App extends React.Component {
         <Header />
         <TableDays handleClick={this.handleClick}/>
 
-        {/* <Table2 /> */}
+        <Table />
 
-        <Table exercises={this.state.exercises} />
+        {/* <Table exercises={this.state.exercises} /> */}
         {/* <Table2 exercises={this.state.exercises} /> */}
 
       </div>
