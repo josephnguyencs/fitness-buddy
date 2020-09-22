@@ -1,3 +1,11 @@
+.container {
+  width: 640px;
+  height: 1334px;
+  border: 1px solid black;
+  /* justify-content: center; */
+  text-align: center;
+}
+
 .button {
   /* margin: 0.5rem 1.45rem 0.5rem 1.45rem; */
   margin: 0.5rem;
@@ -5,10 +13,34 @@
 
 .u-d-buttons {
   position: relative;
-  left: 40rem;
-  margin: .25rem;
+  /* left: 40rem; */
+  /* margin: .25rem; */
+
 }
 
 .fas {
   color: #fff;
+}
+
+.day-button {
+  /* justify-content: center; */
+  /* text-align: center; */
+  /* align-items: center; */
+  padding: 3px;
+}
+
+.header {
+  height: 5%;
+  font-size: 40px;
+  width: 100%;
+}
+
+.header-text {
+  margin-right: 30%;
+}
+
+.footer {
+  margin-top: 1148px;
+  /* width: 640px; */
+  /* align-items: center; */
 }

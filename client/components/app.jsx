@@ -5,6 +5,8 @@ import TableDays from './table-days';
 import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
+import Footer from './footer';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -74,6 +76,7 @@ class App extends React.Component {
   }
 
   render() {
+
     if (this.state.view === 'table') {
       return (
         <div>
@@ -102,6 +105,7 @@ class App extends React.Component {
         </>
       );
     }
+
   }
 }
 
