@@ -23,12 +23,12 @@ app.get('/api/routine/day/:dayId', (req, res, next) => {
   const dayId = req.params.dayId;
   const sql = `
   select "d"."name" as "day",
-         "e"."name" as "exercise",
-         "e"."description",
-         "e"."exerciseId"
+         "c"."name" as "exercise",
+         "c"."description",
+         "c"."customExerciseId"
   from "day" as "d"
   join "dayExercise" using ("dayId")
-  join "exercise" as "e" using ("exerciseId")
+  join "customExercise" as "c" using ("customExerciseId")
   where "dayId" = $1
   `;
   const params = [dayId];
@@ -37,19 +37,19 @@ app.get('/api/routine/day/:dayId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/routine/exercise/:exerciseId', (req, res, next) => {
-  const exerciseId = parseInt(req.params.exerciseId, 10);
-  if (!Number.isInteger(exerciseId) || exerciseId <= 0) {
+app.get('/api/routine/exercise/:customExerciseId', (req, res, next) => {
+  const customExerciseId = parseInt(req.params.customExerciseId, 10);
+  if (!Number.isInteger(customExerciseId) || customExerciseId <= 0) {
     return res.status(400).json({
-      error: 'exerciseId must be a positive integer'
+      error: 'customExerciseId must be a positive integer'
     });
   }
   const sql = `
   select *
-  from "exercise"
-  where "exerciseId" = $1
+  from "customExercise"
+  where "customExerciseId" = $1
   `;
-  const params = [exerciseId];
+  const params = [customExerciseId];
   db.query(sql, params)
     .then(result => {
       const exercise = result.rows[0];
@@ -57,7 +57,7 @@ app.get('/api/routine/exercise/:exerciseId', (req, res, next) => {
         res.json(exercise);
       } else {
         res.status(500).json({
-          error: `Can't find exercise with exerciseId ${exerciseId}`
+          error: `Can't find exercise with customExerciseId ${customExerciseId}`
         });
       }
     })
@@ -75,20 +75,20 @@ app.post('/api/routine', (req, res, next) => {
   }
   if (name && desc && dayId) {
     const sql = `
-  insert into "exercise" ("name", "description")
+  insert into "customExercise" ("name", "description")
   values ($1, $2)
-  returning "exerciseId"
+  returning "customExerciseId"
   `;
     const params = [name, desc];
     db.query(sql, params)
       .then(result1 => {
-        const exerciseId = result1.rows[0].exerciseId;
+        const customExerciseId = result1.rows[0].customExerciseId;
         const sql2 = `
-        insert into "dayExercise" ("dayId", "exerciseId")
+        insert into "dayExercise" ("dayId", "customExerciseId")
         values ($1, $2)
         returning *
         `;
-        const params2 = [dayId, exerciseId];
+        const params2 = [dayId, customExerciseId];
         return db.query(sql2, params2)
           .then(result2 => {
             res.json(result2.rows[0]);
@@ -105,11 +105,11 @@ app.post('/api/routine', (req, res, next) => {
 });
 
 app.delete('/api/routine', (req, res, next) => {
-  const exerciseId = parseInt(req.body.exerciseId, 10);
+  const customExerciseId = parseInt(req.body.customExerciseId, 10);
   const dayId = parseInt(req.body.dayId, 10);
-  if (!Number.isInteger(exerciseId) || exerciseId <= 0) {
+  if (!Number.isInteger(customExerciseId) || customExerciseId <= 0) {
     return res.status(400).json({
-      error: 'exerciseId must be a positive integer'
+      error: 'customExerciseId must be a positive integer'
     });
   }
   if (!Number.isInteger(dayId) || dayId <= 0) {
@@ -118,25 +118,25 @@ app.delete('/api/routine', (req, res, next) => {
     });
   }
   const sql = `
-  delete from "exercise"
-  where "exerciseId" = $1 and "default" = $2
+  delete from "customExercise"
+  where "customExerciseId" = $1
   returning *
   `;
-  const params = [exerciseId, 'false'];
+  const params = [customExerciseId];
   db.query(sql, params)
     .then(result => {
       const exercise = result.rows[0];
       if (!exercise) {
         res.status(404).json({
-          error: `Can't find exercise with exerciseId ${exerciseId}`
+          error: `Can't find exercise with customExerciseId ${customExerciseId}`
         });
       } else {
         const sql2 = `
         delete from "dayExercise"
-        where "dayId" = $1 and "exerciseId" = $2
+        where "dayId" = $1 and "customExerciseId" = $2
         returning *
         `;
-        const params2 = [dayId, exerciseId];
+        const params2 = [dayId, customExerciseId];
         return db.query(sql2, params2)
           .then(result2 => {
             res.status(202).json(result2.rows[0]);
@@ -144,6 +144,36 @@ app.delete('/api/routine', (req, res, next) => {
       }
     })
     .catch(err => next(err));
+});
+
+app.put('/api/routine/:customExerciseId', (req, res, next) => {
+  const customExerciseId = parseInt(req.params.customExerciseId);
+  const name = req.body.name;
+  const desc = req.body.desc;
+  if (!Number.isInteger(customExerciseId) || customExerciseId <= 0) {
+    return res.status(400).json({
+      error: 'customExerciseId must be a positive integer'
+    });
+  }
+  if (name && desc && customExerciseId) {
+    const sql = `
+  update "customExercise"
+  set "name" = $1,
+      "description" = $2
+  where "customExerciseId" = $3
+  returning *
+  `;
+    const params = [name, desc, customExerciseId];
+    db.query(sql, params)
+      .then(result => {
+        res.json(result.rows[0]);
+      })
+      .catch(err => next(err));
+  } else {
+    res.status(500).json({
+      error: 'invalid input'
+    });
+  }
 });
 
 app.use('/api', (req, res, next) => {

@@ -2,35 +2,53 @@ import React from 'react';
 import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
+// import Table2 from './table2';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      day: '1',
+      exercises: [],
       message: null,
       isLoading: true
     };
+    this.setDay = this.setDay.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   fetch('/api/health-check')
-  //     .then(res => res.json())
-  //     .then(data => this.setState({ message: data.message || data.error }))
-  //     .catch(err => this.setState({ message: err.message }))
-  //     .finally(() => this.setState({ isLoading: false }));
-  // }
+  componentDidMount() {
+    this.setExercises(this.state.day);
+  }
 
-  // render() {
-  //   return this.state.isLoading
-  //     ? <h1>Testing connections...</h1>
-  //     : <h1>{this.state.message.toUpperCase()}</h1>;
-  // }
+  setExercises(dayId) {
+    fetch(`/api/routine/day/${dayId}`)
+      .then(result => result.json())
+      .then(data => this.setState({
+        exercises: data
+      }))
+      .catch(err => console.error(err));
+  }
+
+  setDay(dayId) {
+    this.setState({
+      day: dayId
+    });
+  }
+
+  handleClick(event) {
+    const dayId = event.currentTarget.getAttribute('id');
+    this.setDay(dayId);
+    this.setExercises(dayId);
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <TableDays />
+        <TableDays handleClick={this.handleClick}/>
         <Table />
+        {/* <Table2 exercises={this.state.exercises} /> */}
       </div>
     );
   }
