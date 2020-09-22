@@ -20,7 +20,7 @@ class Table extends React.Component {
       );
     });
     return (
-      <div className="container border border-primary rounded">
+      <div className="border border-primary rounded">
         <table>
           {tableData}
         </table>
