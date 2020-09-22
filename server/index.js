@@ -19,7 +19,8 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/routine', (req, res, next) => {
+app.get('/api/routine/day/:dayId', (req, res, next) => {
+  const dayId = req.params.dayId;
   const sql = `
   select "d"."name" as "day",
          "e"."name" as "exercise",
@@ -28,13 +29,15 @@ app.get('/api/routine', (req, res, next) => {
   from "day" as "d"
   join "dayExercise" using ("dayId")
   join "exercise" as "e" using ("exerciseId")
+  where "dayId" = $1
   `;
-  db.query(sql)
-    .then(result => res.json(result.rows[0]))
+  const params = [dayId];
+  db.query(sql, params)
+    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 
-app.get('/api/routine/:exerciseId', (req, res, next) => {
+app.get('/api/routine/exercise/:exerciseId', (req, res, next) => {
   const exerciseId = parseInt(req.params.exerciseId, 10);
   if (!Number.isInteger(exerciseId) || exerciseId <= 0) {
     return res.status(400).json({
@@ -93,37 +96,51 @@ app.post('/api/routine', (req, res, next) => {
       })
       .catch(err => next(err));
   } else if (!name) {
-    res.status(400).json('need a name');
+    res.status(400).json({ error: 'need a name' });
   } else if (!desc) {
-    res.status(400).json('need a description');
-  } else {
-    res.status(400).json('invalid input');
+    res.status(400).json({
+      error: 'need a description'
+    });
   }
 });
 
-app.delete('/api/routine/:exerciseId', (req, res, next) => {
-  const exerciseId = parseInt(req.params.exerciseId, 10);
+app.delete('/api/routine', (req, res, next) => {
+  const exerciseId = parseInt(req.body.exerciseId, 10);
+  const dayId = parseInt(req.body.dayId, 10);
   if (!Number.isInteger(exerciseId) || exerciseId <= 0) {
     return res.status(400).json({
       error: 'exerciseId must be a positive integer'
     });
   }
+  if (!Number.isInteger(dayId) || dayId <= 0) {
+    return res.status(400).json({
+      error: 'dayId must be a positive integer'
+    });
+  }
   const sql = `
-  delete *
-  from "exercise"
-  where exerciseId = $1
+  delete from "exercise"
+  where "exerciseId" = $1 and "default" = $2
   returning *
   `;
-  const params = [exerciseId];
+  const params = [exerciseId, 'false'];
   db.query(sql, params)
     .then(result => {
       const exercise = result.rows[0];
       if (!exercise) {
-        res.status(500).json({
+        res.status(404).json({
           error: `Can't find exercise with exerciseId ${exerciseId}`
         });
       } else {
-        res.json(exercise);
+        const sql2 = `
+        delete from "dayExercise"
+        where "dayId" = $1 and "exerciseId" = $2
+        returning *
+        `;
+        const params2 = [dayId, exerciseId];
+        return db.query(sql2, params2)
+          .then(result2 => {
+            res.status(202).json(result2.rows[0]);
+          });
       }
     })
     .catch(err => next(err));
