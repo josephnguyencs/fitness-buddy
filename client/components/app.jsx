@@ -14,6 +14,7 @@ class App extends React.Component {
       view: 'custom',
       day: '1',
       exercises: [],
+      defaultExercises: [],
       message: null,
       isLoading: true
     };
@@ -25,10 +26,21 @@ class App extends React.Component {
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
+    this.getDefaultExercises = this.getDefaultExercises.bind(this);
   }
 
   componentDidMount() {
     this.setExercises(this.state.day);
+    this.getDefaultExercises();
+  }
+
+  getDefaultExercises() {
+    fetch('/api/routine')
+      .then(result => result.json())
+      .then(data => {
+        this.setState({ defaultExercises: data });
+        console.log(data);
+      });
   }
 
   setExercises(dayId) {
@@ -101,7 +113,7 @@ class App extends React.Component {
     } else if (this.state.view === 'default') {
       return (
         <>
-          <DefaultList handleCancelClick={this.handleCancelClick}/>
+          <DefaultList list={this.state.defaultExercises} handleCancelClick={this.handleCancelClick}/>
         </>
       );
     } else if (this.state.view === 'custom') {

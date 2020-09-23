@@ -19,6 +19,16 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/routine', (req, res, next) => {
+  const sql = `
+  select *
+  from "exercise"
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/routine/day/:dayId', (req, res, next) => {
   const dayId = req.params.dayId;
   const sql = `
