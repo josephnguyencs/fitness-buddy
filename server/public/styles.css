@@ -13,7 +13,9 @@
   background-color: #4682B4;
   padding: 0 3rem;
 }
-
+.footer {
+  width: 100%;
+}
 
 
 .fas {
@@ -27,13 +29,4 @@
 .navbar-brand {
   display: flex;
   color: #fff;
-}
-
-
-
-
-.footer {
-  margin-top: 1148px;
-  /* width: 640px; */
-  /* align-items: center; */
 }

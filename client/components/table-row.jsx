@@ -20,34 +20,40 @@ class TableRow extends React.Component {
     // console.log(this.props);
     if (this.state.isClicked === true) {
       return (
-        <tbody>
-          <tr>
-            <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete
-              onClick={this.handleClick}
-              handleDeleteClick={this.props.handleDeleteClick}
-              handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id}
-            />
-          </tr>
-          <tr>
-            <Description description={this.props.description} />
-          </tr>
-        </tbody>
+        <div className="container">
+          <tbody>
+            <tr>
+              <td onClick={this.showDescription}>{this.props.name}</td>
+              <UpdateAndDelete
+                onClick={this.handleClick}
+                handleDeleteClick={this.props.handleDeleteClick}
+                handleUpdateClick={this.props.handleUpdateClick}
+                id={this.props.id}
+              />
+            </tr>
+            <tr>
+              <Description description={this.props.description} />
+            </tr>
+          </tbody>
+
+        </div>
       );
     } else {
       return (
-        <tbody>
-          <tr>
-            <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete
-              onClick={this.handleClick}
-              handleDeleteClick={this.props.handleDeleteClick}
-              handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id}
-            />
-          </tr>
-        </tbody>
+        <div>
+          <tbody>
+            <tr>
+              <td onClick={this.showDescription}>{this.props.name}</td>
+              <UpdateAndDelete
+                onClick={this.handleClick}
+                handleDeleteClick={this.props.handleDeleteClick}
+                handleUpdateClick={this.props.handleUpdateClick}
+                id={this.props.id}
+              />
+            </tr>
+          </tbody>
+
+        </div>
       );
     }
   }
