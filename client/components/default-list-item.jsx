@@ -1,4 +1,5 @@
 import React from 'react';
+import Exercises from './default-list-item-exercise';
 
 function DefaultListItem(props) {
   const headingsArray = [];
@@ -22,7 +23,7 @@ function DefaultListItem(props) {
           <div className="card-body">
             <div>
               <h3>
-                Example
+                <Exercises />
               </h3>
             </div>
             <button className="btn btn-success">
