@@ -21,7 +21,7 @@ class Table extends React.Component {
     const tableData = this.props.exercises.map(item => {
       return (
         <TableRow key={item.customExerciseId} name={item.exercise} description={item.description}
-          handleUpdateClick={this.props.handleUpdateClick}/>
+          handleUpdateClick={this.props.handleUpdateClick} id={item.customExerciseId}/>
       );
     });
     const numberOfExercises = tableData.length;

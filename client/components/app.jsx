@@ -12,9 +12,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'update',
+      view: 'table',
       day: '1',
       exercises: [],
+      activeCard: {},
       message: null,
       isLoading: true
     };
@@ -78,7 +79,16 @@ class App extends React.Component {
     });
   }
 
-  handleUpdateClick() {
+  handleUpdateClick(event) {
+    const exercises = this.state.exercises.map(element => ({ ...element }));
+    const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
+    exercises.forEach(element => {
+      if (element.customExerciseId === currentExerciseId) {
+        this.setState({
+          activeCard: element
+        });
+      }
+    });
     this.setState({
       view: 'update'
     });
@@ -122,7 +132,7 @@ class App extends React.Component {
     } else if (this.state.view === 'update') {
       return (
         <>
-          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick}/>
+          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard}/>
         </>
       );
     }
