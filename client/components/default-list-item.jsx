@@ -11,10 +11,10 @@ function DefaultListItem(props) {
               <table className="table table-striped">
                 <tbody>
                   <tr>
-                    <td className="text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">{item.exercise}</td>
+                    <td className="text-center" data-toggle="collapse" href={`#${item.exerciseId}`} role="button" aria-expanded="false" aria-controls="collapseExample">{item.exercise}</td>
                     <td className="float-right"><a className="btn btn-sm btn-success" href="#">Add</a></td>
                   </tr>
-                  <tr className="card card-body collapse" id="collapseExample">
+                  <tr className="card card-body collapse" id={item.exerciseId}>
                     <td>{item.description}</td>
                   </tr>
                 </tbody>
