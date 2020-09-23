@@ -20,12 +20,12 @@ class UpdateExercise extends React.Component {
           <div className="form-group">
             <label htmlFor="name" className="sr-only">Exercise Name</label>
             <input type="text" className="form-control" id="name" name="name"
-              placeholder="Exercise Name" defaultValue={this.state.name} onChange={this.handleNameChange} />
+              placeholder="Exercise Name" defaultValue={this.props.exercise.exercise} onChange={this.handleNameChange} />
           </div>
           <div className="form-group">
             <label htmlFor="desc" className="sr-only">Exercise Description</label>
             <textarea className="form-control" name="desc" id="desc" rows="10"
-              placeholder="Describe your exercise here..." defaultValue={this.state.desc}
+              placeholder="Describe your exercise here..." defaultValue={this.props.exercise.description}
               onChange={this.handleDescChange}></textarea>
           </div>
           <div className="row justify-content-center">

@@ -44,7 +44,7 @@ class TableRow extends React.Component {
         <tbody>
           <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete handleUpdateClick={this.props.handleUpdateClick} />
+            <UpdateAndDelete id={this.props.id} handleUpdateClick={this.props.handleUpdateClick} />
           </tr>
           <tr>
             <Description description={this.props.description} />
@@ -56,7 +56,7 @@ class TableRow extends React.Component {
         <tbody>
           <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete handleUpdateClick={this.props.handleUpdateClick}/>
+            <UpdateAndDelete id={this.props.id} handleUpdateClick={this.props.handleUpdateClick}/>
           </tr>
         </tbody>
       );
