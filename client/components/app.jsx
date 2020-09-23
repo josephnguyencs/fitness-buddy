@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'custom',
+      view: 'default',
       day: '1',
       exercises: [],
       defaultExercises: [],
