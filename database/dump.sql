@@ -461,11 +461,6 @@ COPY public.exercise ("exerciseId", name, description, "default") FROM stdin;
 --
 
 COPY public."exerciseBodyPart" ("bodyPartId", "exerciseId") FROM stdin;
-3	3
-3	4
-3	5
-3	6
-3	7
 1	5
 1	7
 1	8
@@ -550,7 +545,7 @@ COPY public.routine ("routineId", "userId", "recommendedCalories") FROM stdin;
 --
 
 COPY public."user" ("userId", "firstName", "lastName", email, password, "createdAt") FROM stdin;
-1	Michael	Poole	test@gmail.com	testpassword	2020-09-21 17:31:39.268283-05
+1	Michael	Poole	test@gmail.com	testpassword	2020-09-21 22:31:39.268283+00
 \.
 
 

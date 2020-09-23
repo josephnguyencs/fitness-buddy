@@ -12,9 +12,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'default',
       day: '1',
       exercises: [],
+      defaultExercises: [],
       activeCard: {},
       message: null,
       isLoading: true
@@ -28,11 +29,22 @@ class App extends React.Component {
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
+    this.getDefaultExercises = this.getDefaultExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
     this.setExercises(this.state.day);
+    this.getDefaultExercises();
+  }
+
+  getDefaultExercises() {
+    fetch('/api/routine')
+      .then(result => result.json())
+      .then(data => {
+        this.setState({ defaultExercises: data });
+        console.log(data);
+      });
   }
 
   setExercises(dayId) {
@@ -138,7 +150,7 @@ class App extends React.Component {
     } else if (this.state.view === 'default') {
       return (
         <>
-          <DefaultList handleCancelClick={this.handleCancelClick}/>
+          <DefaultList list={this.state.defaultExercises} handleCancelClick={this.handleCancelClick}/>
         </>
       );
     } else if (this.state.view === 'custom') {

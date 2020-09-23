@@ -19,6 +19,21 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/routine', (req, res, next) => {
+  const sql = `
+  select "e"."name" as "exercise",
+         "e"."description",
+         "exerciseId",
+         "b"."name" as "bodyPart"
+  from "exercise" as "e"
+  join "exerciseBodyPart" using ("exerciseId")
+  join "bodyPart" as "b" using ("bodyPartId")
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/routine/day/:dayId', (req, res, next) => {
   const dayId = req.params.dayId;
   const sql = `
