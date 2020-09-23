@@ -150,7 +150,7 @@ class App extends React.Component {
     } else if (this.state.view === 'update') {
       return (
         <>
-          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard}/>
+          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard} day={this.state.day}/>
         </>
       );
     }

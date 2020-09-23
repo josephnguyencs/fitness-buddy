@@ -6,9 +6,48 @@ class UpdateExercise extends React.Component {
     super(props);
     this.state = {
       name: '',
-      desc: '',
-      dayId: this.props.day
+      desc: ''
     };
+    this.handleDescChange = this.handleDescChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.exercise.exercise,
+      desc: this.props.exercise.description
+    });
+  }
+
+  handleNameChange(event) {
+    const updatedText = event.currentTarget.value;
+    this.setState({
+      name: updatedText
+    });
+  }
+
+  handleDescChange(event) {
+    const updatedText = event.currentTarget.value;
+    this.setState({
+      desc: updatedText
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const init = {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch(`/api/routine/${this.props.exercise.customExerciseId}`, init)
+      .then(result => result.json())
+      .then(data => this.props.setExercises(this.props.day))
+      .catch(err => console.error(err));
+    this.props.handleCancelClick();
   }
 
   render() {
