@@ -5,14 +5,13 @@ import TableDays from './table-days';
 import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
-import Footer from './footer';
-
+// import Footer from './footer';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'custom',
       day: '1',
       exercises: [],
       message: null,
@@ -24,6 +23,8 @@ class App extends React.Component {
     this.handleDefaultClick = this.handleDefaultClick.bind(this);
     this.handleCustomClick = this.handleCustomClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
+    this.updateExercises = this.updateExercises.bind(this);
+    this.setExercises = this.setExercises.bind(this);
   }
 
   componentDidMount() {
@@ -57,7 +58,6 @@ class App extends React.Component {
     });
   }
 
-
   handleDefaultClick() {
     this.setState({
       view: 'default'
@@ -74,6 +74,11 @@ class App extends React.Component {
     this.setState({
       view: 'table'
     });
+  }
+
+  updateExercises(exercise) {
+    const exercises = this.state.exercises.map(element => ({ ...element }));
+    exercises.push(exercise);
   }
 
   render() {
@@ -102,11 +107,10 @@ class App extends React.Component {
     } else if (this.state.view === 'custom') {
       return (
         <>
-          <Custom handleCancelClick={this.handleCancelClick}/>
+          <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
         </>
       );
     }
-
 
   }
 }
