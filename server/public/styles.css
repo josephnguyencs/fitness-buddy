@@ -29,15 +29,17 @@
   padding: 3px;
 }
 
-.header {
-  height: 5%;
-  font-size: 40px;
-  width: 100%;
+
+.navbar {
+  background-color: #4682B4;
+}
+.navbar-brand {
+  display: flex;
+  color: #fff;
 }
 
-.header-text {
-  margin-right: 30%;
-}
+
+
 
 .footer {
   margin-top: 1148px;
