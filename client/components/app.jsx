@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'default',
+      view: 'table',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -43,7 +43,6 @@ class App extends React.Component {
       .then(result => result.json())
       .then(data => {
         this.setState({ defaultExercises: data });
-        console.log(data);
       });
   }
 
