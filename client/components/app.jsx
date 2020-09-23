@@ -25,6 +25,7 @@ class App extends React.Component {
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -81,14 +82,38 @@ class App extends React.Component {
     exercises.push(exercise);
   }
 
+  handleDeleteClick(event) {
+    const itemId = event.currentTarget.getAttribute('id');
+    // console.log(this.state.exercises);
+    // console.log(event.currentTarget.getAttribute('id'));
+    // console.log(this.state.day);
+    const data = { customExerciseId: itemId, dayId: this.state.day };
+    fetch('/api/routine', {
+      method: 'DELETE',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    // console.log(data);
+    // fetch('/api/routine', {
+    //   method: 'DELETE'
+    // })
+    //   .then(res => res.json())
+    //   .then(data => this.setState({ routine: data }));
+    // console.log('aye');
+  }
+
   render() {
 
     if (this.state.view === 'table') {
       return (
-        <div>
+        <div className="container">
           <Header />
           <TableDays handleClick={this.handleClick}/>
-          <Table exercises={this.state.exercises} handleClick={this.handleAddClick}/>
+          <Table
+            exercises={this.state.exercises}
+            handleClick={this.handleAddClick}
+            handleDeleteClick={this.handleDeleteClick}
+          />
         </div>
       );
     } else if (this.state.view === 'choose') {

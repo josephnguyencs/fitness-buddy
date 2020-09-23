@@ -20,7 +20,13 @@ class Table extends React.Component {
   render() {
     const tableData = this.props.exercises.map(item => {
       return (
-        <TableRow key={item.customExerciseId} name={item.exercise} description={item.description}/>
+        <TableRow
+          key={item.customExerciseId}
+          name={item.exercise}
+          description={item.description}
+          handleDeleteClick={this.props.handleDeleteClick}
+          id={item.customExerciseId}
+        />
       );
     });
     const numberOfExercises = tableData.length;

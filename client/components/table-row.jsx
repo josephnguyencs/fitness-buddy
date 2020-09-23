@@ -12,28 +12,7 @@ class TableRow extends React.Component {
     this.showDescription = this.showDescription.bind(this);
   }
 
-  // handleClick() {
-  //   if (this.event.target.id === 'delete') {
-  //     fetch('', {
-  //       method: 'DELETE'
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => this.setState({ routine: data }));
-  //   } else if (this.event.target.id === 'update') {
-  //     fetch('', {
-  //       method: 'PUT'
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => this.setState({ routine: data }));
-  //   }
-  // }
-
   showDescription() {
-    // if (event.target.this) {
-    //   this.setState({
-    //     isClicked: true
-    //   });
-    // }
     this.setState({ isClicked: !this.state.isClicked });
   }
 
@@ -44,7 +23,11 @@ class TableRow extends React.Component {
         <tbody>
           <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete onClick={this.handleClick} />
+            <UpdateAndDelete
+              onClick={this.handleClick}
+              handleDeleteClick={this.props.handleDeleteClick}
+              id={this.props.id}
+            />
           </tr>
           <tr>
             <Description description={this.props.description} />
@@ -56,7 +39,11 @@ class TableRow extends React.Component {
         <tbody>
           <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete onClick={this.handleClick}/>
+            <UpdateAndDelete
+              onClick={this.handleClick}
+              handleDeleteClick={this.props.handleDeleteClick}
+              id={this.props.id}
+            />
           </tr>
         </tbody>
       );
