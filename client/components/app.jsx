@@ -7,12 +7,13 @@ import Custom from './custom';
 import DefaultList from './default-list';
 // import Footer from './footer';
 import UpdateExercise from './update-exercise';
+import CalorieCounter from './calorie-counter';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'default',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -162,6 +163,12 @@ class App extends React.Component {
       return (
         <>
           <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard} day={this.state.day}/>
+        </>
+      );
+    } else if (this.state.view === 'calorie') {
+      return (
+        <>
+          <CalorieCounter />
         </>
       );
     }
