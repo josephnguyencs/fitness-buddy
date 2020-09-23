@@ -23,12 +23,9 @@ function DefaultListItem(props) {
           <div className="card-body">
             <div>
               <h3>
-                <Exercises />
+                <Exercises list={props.list.list} bodyPart={element}/>
               </h3>
             </div>
-            <button className="btn btn-success">
-              Add
-            </button>
           </div>
         </div>
       </div>
