@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'default',
       day: '1',
       exercises: [],
       defaultExercises: [],
