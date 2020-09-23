@@ -1,32 +1,23 @@
 .container {
-  width: 640px;
-  height: 1334px;
-  border: 1px solid black;
-  /* justify-content: center; */
-  text-align: center;
+  max-width: 400px;
+  margin: 0;
 }
 
+.header {
+  width: 100%;
+}
 .button {
   /* margin: 0.5rem 1.45rem 0.5rem 1.45rem; */
-  margin: 0.5rem;
+  margin: 0.2rem;
+  color: #fff;
+  background-color: #4682B4;
+  padding: 0 3rem;
 }
 
-.u-d-buttons {
-  position: relative;
-  /* left: 40rem; */
-  /* margin: .25rem; */
 
-}
 
 .fas {
   color: #fff;
-}
-
-.day-button {
-  /* justify-content: center; */
-  /* text-align: center; */
-  /* align-items: center; */
-  padding: 3px;
 }
 
 
