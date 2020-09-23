@@ -2,10 +2,12 @@ import React from 'react';
 
 function Header() {
   return (
-    <div className="header bg-info">
-      {/* <img src="../../server/public/images/WOBlogo2.jpg" alt="WOB Logo" width="100"/> */}
-      <div className="text-white header-text">Fitness Buddy</div>
-    </div>
+    <nav className="navbar">
+      <a className="navbar-brand" href="#">
+        <i className="fas fa-dumbbell fa-2x d-inline-block align-top"></i>
+        <h3 className="ml-4 mt-1">Buddy Workout</h3>
+      </a>
+    </nav>
   );
 }
 

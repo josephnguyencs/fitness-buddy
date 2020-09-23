@@ -6,14 +6,16 @@ import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
 // import Footer from './footer';
+import UpdateExercise from './update-exercise';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'custom',
+      view: 'table',
       day: '1',
       exercises: [],
+      activeCard: {},
       message: null,
       isLoading: true
     };
@@ -23,6 +25,7 @@ class App extends React.Component {
     this.handleDefaultClick = this.handleDefaultClick.bind(this);
     this.handleCustomClick = this.handleCustomClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
@@ -77,6 +80,21 @@ class App extends React.Component {
     });
   }
 
+  handleUpdateClick(event) {
+    const exercises = this.state.exercises.map(element => ({ ...element }));
+    const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
+    exercises.forEach(element => {
+      if (element.customExerciseId === currentExerciseId) {
+        this.setState({
+          activeCard: element
+        });
+      }
+    });
+    this.setState({
+      view: 'update'
+    });
+  }
+
   updateExercises(exercise) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     exercises.push(exercise);
@@ -113,6 +131,7 @@ class App extends React.Component {
             exercises={this.state.exercises}
             handleClick={this.handleAddClick}
             handleDeleteClick={this.handleDeleteClick}
+            handleUpdateClick={this.handleUpdateClick}
           />
         </div>
       );
@@ -133,6 +152,12 @@ class App extends React.Component {
       return (
         <>
           <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
+        </>
+      );
+    } else if (this.state.view === 'update') {
+      return (
+        <>
+          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard}/>
         </>
       );
     }

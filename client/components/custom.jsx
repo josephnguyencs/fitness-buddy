@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header';
-import TableDays from './table-days';
 
 class Custom extends React.Component {
 
@@ -50,7 +49,6 @@ class Custom extends React.Component {
     return (
       <div>
         <Header />
-        <TableDays />
         <h2 className="text-center mt-3">Add Entry</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
