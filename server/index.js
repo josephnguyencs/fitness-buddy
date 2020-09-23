@@ -161,6 +161,35 @@ app.delete('/api/routine', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/routine/calories', (req, res, next) => {
+  const sql = `
+  select *
+  from "routine"
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows[0]));
+});
+
+app.put('/api/routine/calories', (req, res, next) => {
+  const calories = parseInt(req.body.calories);
+  if (!Number.isInteger(calories) || calories <= 0) {
+    return res.status(400).json({
+      error: 'calories must be a positive integer'
+    });
+  }
+  const sql = `
+  update "routine"
+  set "recommendedCalories" = $1
+  returning *
+  `;
+  const params = [calories];
+  db.query(sql, params)
+    .then(result => {
+      const routine = result.rows[0];
+      res.json(routine);
+    });
+});
+
 app.put('/api/routine/:customExerciseId', (req, res, next) => {
   const customExerciseId = parseInt(req.params.customExerciseId);
   const name = req.body.name;

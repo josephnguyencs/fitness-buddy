@@ -1,93 +1,103 @@
 import React from 'react';
 
 function DefaultListItem(props) {
-  const list = props.list.list.map(item => {
-    if (item.bodyPart === 'Chest') {
-      return (
-        <div key={item.exerciseId}>
-          <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div className="card-body">
-              <table className="table table-striped">
-                <tbody>
-                  <tr>
-                    <td className="text-center" data-toggle="collapse" href={`#${item.exerciseId}`} role="button" aria-expanded="false" aria-controls="collapseExample">{item.exercise}</td>
-                    <td className="float-right"><a className="btn btn-sm btn-success" href="#">Add</a></td>
-                  </tr>
-                  <tr className="card card-body collapse" id={item.exerciseId}>
-                    <td>{item.description}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      );
+  const headingsArray = [];
+  props.list.list.forEach(item => {
+    if (headingsArray.indexOf(item.bodyPart) === -1) {
+      headingsArray.push(item.bodyPart);
     }
   });
-  /* return (
-      <div key={item.exerciseId}>
-        <div className="accordion" id="accordionExample">
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h2 className="mb-0">
-                <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  {item.bodyPart}
-                </button>
-              </h2>
+  const headers = headingsArray.map((element, index) => {
+    return (
+      <div className="card" key={index}>
+        <div className="card-header" id={`heading${index}`}>
+          <h2 className="mb-0">
+            <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target={`#collapse${index}`}
+              aria-expanded="true" aria-controls={`collapse${index}`}>
+              {element}
+            </button>
+          </h2>
+        </div>
+        <div id={`collapse${index}`} className="collapse" data-parent="#accordionExample" aria-labelledby={`heading${index}`}>
+          <div className="card-body">
+            <div>
+              <h3>
+                Example
+              </h3>
             </div>
-            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div className="card-body">
-                <table className="table table-striped">
-                  <tbody>
-                    <tr>
-                      <td className="text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">{item.exercise}</td>
-                      <td className="float-right"><a className="btn btn-sm btn-success" href="#">Add</a></td>
-                    </tr>
-                    <tr className="card card-body collapse" id="collapseExample">
-                      <td>{item.description}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <button className="btn btn-success">
+              Add
+            </button>
           </div>
         </div>
       </div>
     );
-  }); */
+  });
+  // const list = props.list.list.map(item => {
+  //   if (item.bodyPart === 'Chest') {
+  //     return (
+  //       <div key={item.exerciseId}>
+  //         <h3 id={item.exerciseId}>
+  //           {item.exercise}
+  //         </h3>
+  //         <button className="btn btn-success">
+  //           Add
+  //         </button>
+  //       </div>
+  //     );
+  //   }
+  // });
+
   return (
-    <div>
+
+    <>
       <div>
-        <div className="accordion" id="accordionExample">
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h2 className="mb-0">
-                <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  Chest
-                </button>
-              </h2>
-            </div>
-            {list}
-          </div>
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h2 className="mb-0">
-                <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  Chest
-                </button>
-              </h2>
-            </div>
-            {list}
+        <div>
+          <div className="accordion" id="accordionExample">
+            {headers}
           </div>
         </div>
       </div>
-      <div className="row justify-content-center mt-5">
-        <button className="btn btn-danger" onClick={props.list.handleCancelClick}>Return To Planner</button>
-      </div>
-    </div>
+    </>
+    // <div>
+    //   <div>
+    //     <div className="accordion" id="accordionExample">
+    //       <div className="card">
+    //         <div className="card-header" id="headingOne">
+    //           <h2 className="mb-0">
+    //             <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne"
+    //               aria-expanded="true" aria-controls="collapseOne">
+    //               Chest
+    //             </button>
+    //           </h2>
+    //         </div>
+    //         <div id="collapseOne" className="collapse" data-parent="#accordionExample" aria-labelledby="headingOne">
+    //           <div className="card-body">
+    //             {list}
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <div className="card">
+    //         <div className="card-header" id="headingTwo">
+    //           <h2 className="mb-0">
+    //             <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseTwo"
+    //               aria-expanded="true" aria-controls="collapseTwo">
+    //               Chest
+    //             </button>
+    //           </h2>
+    //         </div>
+    //         <div id="collapseTwo" className="collapse" data-parent="#accordionExample" aria-labelledby="headingTwo">
+    //           <div className="card-body">
+    //             {list}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div className="row justify-content-center mt-5">
+    //     <button className="btn btn-danger" onClick={props.list.handleCancelClick}>Return To Planner</button>
+    //   </div>
+    // </div>
   );
 }
 
