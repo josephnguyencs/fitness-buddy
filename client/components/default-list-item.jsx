@@ -2,7 +2,6 @@ import React from 'react';
 
 function DefaultListItem(props) {
   const list = props.list.list.map(item => {
-    console.log(item);
     if (item.bodyPart === 'Chest') {
       return (
         <div key={item.exerciseId}>
@@ -86,7 +85,7 @@ function DefaultListItem(props) {
         </div>
       </div>
       <div className="row justify-content-center mt-5">
-        <button className="btn btn-danger" onClick={props.handleCancelClick}>Return To Planner</button>
+        <button className="btn btn-danger" onClick={props.list.handleCancelClick}>Return To Planner</button>
       </div>
     </div>
   );
