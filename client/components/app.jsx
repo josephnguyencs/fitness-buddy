@@ -6,12 +6,13 @@ import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
 // import Footer from './footer';
+import UpdateExercise from './update-exercise';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'custom',
+      view: 'update',
       day: '1',
       exercises: [],
       message: null,
@@ -23,6 +24,7 @@ class App extends React.Component {
     this.handleDefaultClick = this.handleDefaultClick.bind(this);
     this.handleCustomClick = this.handleCustomClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
   }
@@ -76,6 +78,12 @@ class App extends React.Component {
     });
   }
 
+  handleUpdateClick() {
+    this.setState({
+      view: 'update'
+    });
+  }
+
   updateExercises(exercise) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     exercises.push(exercise);
@@ -88,7 +96,8 @@ class App extends React.Component {
         <div>
           <Header />
           <TableDays handleClick={this.handleClick}/>
-          <Table exercises={this.state.exercises} handleClick={this.handleAddClick}/>
+          <Table exercises={this.state.exercises} handleClick={this.handleAddClick}
+            handleUpdateClick={this.handleUpdateClick}/>
         </div>
       );
     } else if (this.state.view === 'choose') {
@@ -108,6 +117,12 @@ class App extends React.Component {
       return (
         <>
           <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
+        </>
+      );
+    } else if (this.state.view === 'update') {
+      return (
+        <>
+          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick}/>
         </>
       );
     }
