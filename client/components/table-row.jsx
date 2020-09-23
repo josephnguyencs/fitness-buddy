@@ -26,7 +26,7 @@ class TableRow extends React.Component {
             <UpdateAndDelete
               onClick={this.handleClick}
               handleDeleteClick={this.props.handleDeleteClick}
-               handleUpdateClick={this.props.handleUpdateClick}
+              handleUpdateClick={this.props.handleUpdateClick}
               id={this.props.id}
             />
           </tr>
