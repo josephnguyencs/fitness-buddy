@@ -42,18 +42,22 @@ class Custom extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const init = {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch('/api/routine', init)
-      .then(result => result.json())
-      .then(data => this.props.setExercises(data.dayId))
-      .catch(err => console.error(err));
-    this.props.handleCancelClick();
+    if (this.state.name && this.state.desc) {
+      const init = {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
+      };
+      fetch('/api/routine', init)
+        .then(result => result.json())
+        .then(data => this.props.setExercises(data.dayId))
+        .catch(err => console.error(err));
+      this.props.handleCancelClick();
+    } else {
+      return null;
+    }
   }
 
   render() {
