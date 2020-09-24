@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'calorie',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -227,8 +227,9 @@ class App extends React.Component {
     } else if (this.state.view === 'calorie') {
       return (
         <>
-          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories}/>
+          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories} setView={this.setView}/>
           <Footer setView={this.setView}/>
+
         </>
       );
     } else if (this.state.view === 'result') {
