@@ -13,14 +13,19 @@
   background-color: #4682B4;
   padding: 0 3rem;
 }
+
 .footer {
   width: 100%;
 }
 
-
 .fas {
   color: #fff;
 }
+
+/* .calorie-form { */
+  /* justify-content: center; */
+  /* align-items: center; */
+/* } */
 
 
 .navbar {

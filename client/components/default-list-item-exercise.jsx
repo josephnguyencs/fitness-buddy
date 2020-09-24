@@ -8,9 +8,9 @@ function Exercises(props) {
         <div className="card row" key={element.exerciseId}>
           <div className="card-header row justify-content-between align-items-center" id={`exerciseHeading${element.exerciseId}`}>
             <div className="col-9 cursor-pointer collapsed" data-toggle="collapse" data-target={`#collapseInner${element.exerciseId}`} aria-expanded="true" aria-controls={`collapseInner${element.exerciseId}`} >
-              <h2>
+              <h5>
                 {element.exercise}
-              </h2>
+              </h5>
             </div>
             <div className="col-2 d-flex justify-content-center">
               <button className="btn btn-success btn-block">
