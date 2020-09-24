@@ -45,7 +45,9 @@ class Table extends React.Component {
       <div>
 
         <table className="w-100">
-          {tableData}
+          <tbody>
+            {tableData}
+          </tbody>
         </table>
 
         <div className="row justify-content-center">
