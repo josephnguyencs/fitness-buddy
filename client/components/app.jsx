@@ -35,6 +35,7 @@ class App extends React.Component {
     this.getDefaultExercises = this.getDefaultExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateCalories = this.updateCalories.bind(this);
+    this.handleAddDefault = this.handleAddDefault.bind(this);
   }
 
   componentDidMount() {
@@ -127,8 +128,14 @@ class App extends React.Component {
   }
 
   handleCancelClick() {
+    const dayId = this.state.day;
     this.setState({
-      view: 'table'
+      view: 'table',
+      activeCard: {
+        exercise: '',
+        description: '',
+        dayId
+      }
     });
   }
 
@@ -145,6 +152,25 @@ class App extends React.Component {
     this.setState({
       view: 'update'
     });
+  }
+
+  handleAddDefault(event) {
+    if (event.target.tagName === 'BUTTON') {
+      const target = event.currentTarget;
+      const day = this.state.day;
+      const name = target.firstElementChild.firstElementChild.textContent;
+      const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
+      this.setState({
+        activeCard: {
+          exercise: name,
+          description: desc,
+          dayId: day
+        }
+      });
+      this.setState({
+        view: 'custom'
+      });
+    }
   }
 
   updateExercises(exercise) {
@@ -189,13 +215,13 @@ class App extends React.Component {
     } else if (this.state.view === 'default') {
       return (
         <>
-          <DefaultList list={this.state.defaultExercises} handleCancelClick={this.handleCancelClick}/>
+          <DefaultList list={this.state.defaultExercises} handleCancelClick={this.handleCancelClick} handleAddDefault={this.handleAddDefault} />
         </>
       );
     } else if (this.state.view === 'custom') {
       return (
         <>
-          <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
+          <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} activeCard={this.state.activeCard} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
         </>
       );
     } else if (this.state.view === 'update') {
