@@ -2,7 +2,6 @@ import React from 'react';
 import CalorieCounterResult from './calorie-counter-result';
 import Header from './header';
 
-
 class CalorieCounter extends React.Component {
   constructor(props) {
     super(props);
@@ -38,8 +37,8 @@ class CalorieCounter extends React.Component {
     const age = this.state.age;
     const weight = this.state.weight;
     const height = this.state.height;
-    const gender = this.state.gender;
-    const activity = this.state.activity;
+    const gender = this.state.genderselect;
+    const activity = this.state.activitylevel;
     this.props.caloriesFunction(gender, age, weight, height, activity);
     this.setState({
       calories: this.props.calories,
