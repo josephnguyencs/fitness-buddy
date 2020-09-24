@@ -9,6 +9,7 @@ import DefaultList from './default-list';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
+import RecommendedCalories from './recommended-cal';
 
 class App extends React.Component {
   constructor(props) {
@@ -180,6 +181,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
+          <RecommendedCalories calories={this.state.calories} />
           <TableDays handleClick={this.handleClick}/>
           <Table
             exercises={this.state.exercises}
