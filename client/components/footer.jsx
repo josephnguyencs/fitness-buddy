@@ -1,17 +1,20 @@
 import React from 'react';
 
-function Footer() {
+function Footer(props) {
   return (
-
     <div className="navbar footer">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" onClick={() => {
+        props.setView('table');
+      }}>
         <i className="fas fa-calendar-alt fa-2x"></i>
       </a>
-      <a className="navbar-brand" href="#">
-        <i className="fas fa-dumbbell fa-2x"></i>
-      </a>
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" onClick={() => {
+        props.setView('calorie');
+      }} href="#">
         <i className="fas fa-apple-alt fa-2x"></i>
+      </a>
+      <a className="navbar-brand" >
+        <i className="fas fa-dumbbell fa-2x"></i>
       </a>
     </div>
 
