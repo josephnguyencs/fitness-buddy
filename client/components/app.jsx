@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'default',
+      view: 'table',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -25,9 +25,6 @@ class App extends React.Component {
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleDefaultClick = this.handleDefaultClick.bind(this);
-    this.handleCustomClick = this.handleCustomClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
@@ -36,6 +33,7 @@ class App extends React.Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
+    this.setView = this.setView.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +47,12 @@ class App extends React.Component {
       .then(data => {
         this.setState({ defaultExercises: data });
       });
+  }
+
+  setView(newView) {
+    this.setState({
+      view: newView
+    });
   }
 
   setExercises(dayId) {
@@ -109,24 +113,6 @@ class App extends React.Component {
     this.setExercises(dayId);
   }
 
-  handleAddClick() {
-    this.setState({
-      view: 'choose'
-    });
-  }
-
-  handleDefaultClick() {
-    this.setState({
-      view: 'default'
-    });
-  }
-
-  handleCustomClick() {
-    this.setState({
-      view: 'custom'
-    });
-  }
-
   handleCancelClick() {
     const dayId = this.state.day;
     this.setState({
@@ -149,9 +135,7 @@ class App extends React.Component {
         });
       }
     });
-    this.setState({
-      view: 'update'
-    });
+    this.setView('update');
   }
 
   handleAddDefault(event) {
@@ -167,9 +151,7 @@ class App extends React.Component {
           dayId: day
         }
       });
-      this.setState({
-        view: 'custom'
-      });
+      this.setView('custom');
     }
   }
 
@@ -199,7 +181,7 @@ class App extends React.Component {
           <TableDays handleClick={this.handleClick}/>
           <Table
             exercises={this.state.exercises}
-            handleClick={this.handleAddClick}
+            setView={this.setView}
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
@@ -209,7 +191,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <DefaultAndCustomModal handleCancelClick={this.handleCancelClick} handleDefaultClick={this.handleDefaultClick} handleCustomClick={this.handleCustomClick}/>
+          <DefaultAndCustomModal setView={this.setView} handleCancelClick={this.handleCancelClick}/>
         </>
       );
     } else if (this.state.view === 'default') {
