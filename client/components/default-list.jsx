@@ -6,7 +6,7 @@ function DefaultList(props) {
   return (
     <div>
       <Header />
-      <DefaultListItem list={props} />
+      <DefaultListItem list={props} handleAddDefault={props.handleAddDefault}/>
     </div>
   );
 }

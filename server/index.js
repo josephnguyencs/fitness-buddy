@@ -167,7 +167,8 @@ app.get('/api/routine/calories', (req, res, next) => {
   from "routine"
   `;
   db.query(sql)
-    .then(result => res.json(result.rows[0]));
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
 });
 
 app.put('/api/routine/calories', (req, res, next) => {
