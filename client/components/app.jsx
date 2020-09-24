@@ -5,7 +5,7 @@ import TableDays from './table-days';
 import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
-// import Footer from './footer';
+import Footer from './footer';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
@@ -189,6 +189,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
+          <Footer setView={this.setView}/>
         </>
       );
     } else if (this.state.view === 'choose') {
@@ -220,6 +221,7 @@ class App extends React.Component {
       return (
         <>
           <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories}/>
+          <Footer setView={this.setView}/>
         </>
       );
     } else if (this.state.view === 'result') {
