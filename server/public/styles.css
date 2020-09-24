@@ -67,3 +67,25 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.clock {
+  width: 50vh;
+  height: 50vh;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-time {
+  margin-top: 30px;
+}

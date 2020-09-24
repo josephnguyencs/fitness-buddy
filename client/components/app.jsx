@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'stopwatch',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -234,6 +234,7 @@ class App extends React.Component {
     } else if (this.state.view === 'stopwatch') {
       return (
         <>
+          <Header />
           <Stopwatch />
           <Footer setView={this.setView}/>
         </>
