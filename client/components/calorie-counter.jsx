@@ -39,11 +39,15 @@ class CalorieCounter extends React.Component {
     const height = this.state.height;
     const gender = this.state.genderselect;
     const activity = this.state.activitylevel;
-    this.props.caloriesFunction(gender, age, weight, height, activity);
-    this.setState({
-      calories: this.props.calories,
-      view: 'result'
-    });
+    if (age && weight && height && activity && gender) {
+      this.props.caloriesFunction(gender, age, weight, height, activity);
+      this.setState({
+        calories: this.props.calories,
+        view: 'result'
+      });
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -82,11 +86,11 @@ class CalorieCounter extends React.Component {
             <div className="form-group">
               <select name="activitylevel" className="form-control form-control-sm" value={activityValue} onChange={this.handleChange}>
                 <option disabled className="calorie-option" value="default">Activity Level</option>
-                <option className="calorie-option" value="sedentary">Sedentary (little or no exercise)</option>
-                <option className="calorie-option" value="lightly-active">Lightly Active (light exercise/sport 1-3 days a week)</option>
-                <option className="calorie-option" value="moderately-active">Moderately Active (moderate exercise/sport 3-5 days a week)</option>
-                <option className="calorie-option" value="very-active">Very Active (hard exercise/sport 6-7 days a week)</option>
-                <option className="calorie-option" value="extra-active">Extra Active (very hard exercise/sport & physical job or 2X training)</option>
+                <option className="calorie-option" value="Sedentary">Sedentary (little or no exercise)</option>
+                <option className="calorie-option" value="Lightly Active">Lightly Active (light exercise/sport 1-3 days a week)</option>
+                <option className="calorie-option" value="Moderately Active">Moderately Active (moderate exercise/sport 3-5 days a week)</option>
+                <option className="calorie-option" value="Very Active">Very Active (hard exercise/sport 6-7 days a week)</option>
+                <option className="calorie-option" value="Extra Active">Extra Active (very hard exercise/sport & physical job or 2X training)</option>
               </select>
             </div>
             <div className="form-group">

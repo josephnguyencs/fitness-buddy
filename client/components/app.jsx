@@ -85,19 +85,19 @@ class App extends React.Component {
     }
     let calories = null;
     switch (activity) {
-      case 'sedentary':
+      case 'Sedentary':
         calories = bmr * 1.2;
         break;
-      case 'lightly-active':
+      case 'Lightly Active':
         calories = bmr * 1.375;
         break;
-      case 'moderately-active':
+      case 'Moderately Active':
         calories = bmr * 1.55;
         break;
-      case 'very-active':
+      case 'Very Active':
         calories = bmr * 1.725;
         break;
-      case 'extra-active':
+      case 'Extra Active':
         calories = bmr * 1.9;
         break;
       default:
