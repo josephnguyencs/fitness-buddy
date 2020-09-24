@@ -22,18 +22,20 @@ class TableRow extends React.Component {
       return (
 
         <>
-          <tr className="text-right">
-            <td onClick={this.showDescription}>{this.props.name}</td>
-            <UpdateAndDelete
-              onClick={this.handleClick}
-              handleDeleteClick={this.props.handleDeleteClick}
-              handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id}
-            />
-          </tr>
-          <tr className="text-left">
-            <Description description={this.props.description} />
-          </tr>
+          <div>
+            <tr className="text-right">
+              <td onClick={this.showDescription}>{this.props.name}</td>
+              <UpdateAndDelete
+                onClick={this.handleClick}
+                handleDeleteClick={this.props.handleDeleteClick}
+                handleUpdateClick={this.props.handleUpdateClick}
+                id={this.props.id}
+              />
+            </tr>
+            <tr className="text-left">
+              <Description description={this.props.description} />
+            </tr>
+          </div>
         </>
 
       );
@@ -42,7 +44,7 @@ class TableRow extends React.Component {
 
         <>
 
-          <tr className="text-right">
+          <tr className="text-left">
             <td onClick={this.showDescription}>{this.props.name}</td>
             <UpdateAndDelete
               onClick={this.handleClick}
