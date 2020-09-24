@@ -68,6 +68,9 @@
   cursor: pointer;
 }
 
+.margin-top-12 {
+  margin-top: 12rem;
+
 .do-not-show {
   visibility: hidden;
 }
