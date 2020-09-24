@@ -56,6 +56,29 @@
   margin: 4% 0% 0% 0%;
 }
 
+.calorie-table {
+  margin: auto;
+  /* width: 60%; */
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: nowrap; */
+  justify-content: center;
+}
+
+.calorie-t-body {
+  margin: auto;
+  text-align: right;
+  width: 70%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* align-items: center; */
+}
+
+.calorie-t-data-textbox {
+  padding-left: 7%;
+}
+
 .navbar {
   background-color: #4682B4;
 }
@@ -67,6 +90,7 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
 
 .fitness-modal-background {
   display: flex;
@@ -114,4 +138,11 @@
   right: 10px;
   font-size: 1.5rem;
   color: red;
+
+.margin-top-12 {
+  margin-top: 12rem;
+
+.do-not-show {
+  visibility: hidden;
+
 }
