@@ -14,13 +14,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'default',
+      view: 'calorie',
       day: '1',
       exercises: [],
       defaultExercises: [],
       activeCard: {},
       message: null,
-      isLoading: true
+      isLoading: true,
+      calories: 100
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -33,6 +34,7 @@ class App extends React.Component {
     this.setExercises = this.setExercises.bind(this);
     this.getDefaultExercises = this.getDefaultExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.updateCalories = this.updateCalories.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +63,43 @@ class App extends React.Component {
     this.setState({
       day: dayId
     });
+  }
+
+  updateCalories(gender, age, weight, height, activity) {
+    let bmr = null;
+    if (gender === 'male') {
+      bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age);
+    } else {
+      bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age);
+    }
+    let calories = null;
+    switch (activity) {
+      case 'sedentary':
+        calories = bmr * 1.2;
+        break;
+      case 'lightly-active':
+        calories = bmr * 1.375;
+        break;
+      case 'moderately-active':
+        calories = bmr * 1.55;
+        break;
+      case 'very-active':
+        calories = bmr * 1.725;
+        break;
+      case 'extra-active':
+        calories = bmr * 1.9;
+        break;
+      default:
+        calories = 0;
+    }
+    const data = { calories: calories };
+    fetch('/api/routine/calories', {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(result => result.json())
+      .then(data => this.setState({ calories: data.recommendedCalories }));
   }
 
   handleClick(event) {
@@ -127,7 +166,6 @@ class App extends React.Component {
   }
 
   render() {
-
     if (this.state.view === 'table') {
       return (
         <>
@@ -169,7 +207,7 @@ class App extends React.Component {
     } else if (this.state.view === 'calorie') {
       return (
         <>
-          <CalorieCounter />
+          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories}/>
         </>
       );
     } else if (this.state.view === 'result') {

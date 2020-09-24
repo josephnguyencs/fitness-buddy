@@ -13,7 +13,7 @@ function CalorieCounterResult(props) {
       </div>
       <div>
         <h3>Your total daily calorie needs</h3>
-        <h1>50 Calories</h1>
+        <h1>{props.calories} Calories</h1>
       </div>
     </div>
   );

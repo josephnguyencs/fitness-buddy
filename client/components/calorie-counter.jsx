@@ -1,4 +1,5 @@
 import React from 'react';
+import CalorieCounterResult from './calorie-counter-result';
 
 class CalorieCounter extends React.Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class CalorieCounter extends React.Component {
       weight: null,
       height: null,
       gender: null,
-      activity: null
+      activity: null,
+      calories: null,
+      view: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,38 +20,29 @@ class CalorieCounter extends React.Component {
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    this.setState({
-      [name]: value
-    });
+    if (name === 'gender' || name === 'activity') {
+      this.setState({
+        [name]: value
+      });
+    } else {
+      this.setState({
+        [name]: parseInt(value)
+      });
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const calorie = {
-      age: this.state.age,
-      weight: this.state.weight,
-      height: this.state.height,
-      gender: this.state.gender,
-      activity: this.state.activity
-    };
-
-  }
-
-  getCalories() {
-    const maleCalories = 66 + (6.3 * this.state.weight) + (12.9 * this.state.height) - (6.8 * this.state.age);
-    const femaleCalories = 655 + (4.3 * this.state.weight) + (4.7 * this.state.height) - (4.7 * this.state.age);
-    if (this.state.gender === 'male') {
-      switch (this.state.activity) {
-        case ('sedentary'):
-          console.log('test');
-      }
-    } else if (this.state.gender === 'female') {
-      const caloriesBeforeActivity = femaleCalories;
-    }
-  }
-
-  calculateCalories() {
-
+    const age = this.state.age;
+    const weight = this.state.weight;
+    const height = this.state.height;
+    const gender = this.state.gender;
+    const activity = this.state.activity;
+    this.props.caloriesFunction(gender, age, weight, height, activity);
+    this.setState({
+      calories: this.props.calories,
+      view: 'result'
+    });
   }
 
   render() {
@@ -57,6 +51,11 @@ class CalorieCounter extends React.Component {
     const heightValue = this.state.height;
     const genderValue = this.state.gender;
     const activityValue = this.state.activity;
+    if (this.state.view === 'result') {
+      return (
+        <CalorieCounterResult values={this.state} calories={this.props.calories}/>
+      );
+    }
     return (
       <div className="container calorie-form">
         <h1>Your Info</h1>
