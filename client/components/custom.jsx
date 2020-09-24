@@ -18,11 +18,9 @@ class Custom extends React.Component {
   componentDidMount() {
     const name = this.props.activeCard.exercise;
     const desc = this.props.activeCard.description;
-    const dayId = this.props.activeCard.dayId;
     this.setState({
       name,
-      desc,
-      dayId
+      desc
     });
   }
 
