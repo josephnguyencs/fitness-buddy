@@ -5,10 +5,11 @@ import TableDays from './table-days';
 import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
 import DefaultList from './default-list';
-// import Footer from './footer';
+import Footer from './footer';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
+import RecommendedCalories from './recommended-cal';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends React.Component {
       },
       message: null,
       isLoading: true,
-      calories: 100
+      calories: 1935
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -37,6 +38,7 @@ class App extends React.Component {
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
     this.setView = this.setView.bind(this);
+    this.resetCalories = this.resetCalories.bind(this);
   }
 
   componentDidMount() {
@@ -129,6 +131,12 @@ class App extends React.Component {
     });
   }
 
+  resetCalories() {
+    this.setState({
+      calories: null
+    });
+  }
+
   handleUpdateClick(event) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
@@ -180,6 +188,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
+          <RecommendedCalories resetCalories={this.resetCalories} calories={this.state.calories} />
           <TableDays handleClick={this.handleClick}/>
           <Table
             exercises={this.state.exercises}
@@ -187,6 +196,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
+          <Footer setView={this.setView}/>
         </>
       );
     } else if (this.state.view === 'choose') {
@@ -218,6 +228,8 @@ class App extends React.Component {
       return (
         <>
           <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories} setView={this.setView}/>
+          <Footer setView={this.setView}/>
+
         </>
       );
     } else if (this.state.view === 'result') {

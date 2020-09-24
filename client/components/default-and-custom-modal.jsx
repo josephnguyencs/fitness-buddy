@@ -21,7 +21,7 @@ class DefaultAndCustomModal extends React.Component {
         <div className="card">
           <div className="card-header text-center">Add Entry</div>
           <div className="card-body">
-            <p className="card-text">Choose Default or Custom</p>
+            <p className="card-text text-center">Choose Default or Custom</p>
             <a href="#" className="btn btn-success btn-block" onClick={this.handleDefaultClick}>Default</a>
             <a href="#" className="btn btn-success btn-block" onClick={this.handleCustomClick}>Custom</a>
             <a href="#" className="btn btn-danger btn-block col-5 mx-auto" onClick={this.props.handleCancelClick}>Cancel</a>
