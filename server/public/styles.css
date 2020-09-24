@@ -35,3 +35,7 @@
   display: flex;
   color: #fff;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
