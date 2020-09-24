@@ -36,7 +36,7 @@ class Table extends React.Component {
     if (numberOfExercises === 0) {
       return (
         <>
-          <h1 className="text-center">No exercises added.</h1>
+          <h3 className="text-center">No exercises added.</h3>
           <div className="row justify-content-center">
             <button className="btn btn-success mt-5" onClick={this.handleClick}>Add Exercise</button>
           </div>
@@ -46,7 +46,7 @@ class Table extends React.Component {
     return (
       <div>
 
-        <table className="w-100">
+        <table className="w-95 mx-auto">
           <tbody>
             {tableData}
           </tbody>
