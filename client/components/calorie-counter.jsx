@@ -5,7 +5,11 @@ class CalorieCounter extends React.Component {
     super(props);
     this.state = {
       value: 'select',
-      view: 'calorie'
+      view: 'calorie',
+      age: null,
+      weight: null,
+      height: null,
+      gender: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,40 +24,54 @@ class CalorieCounter extends React.Component {
     this.setState({ view: 'result' });
   }
 
+  // getCalories() {
+  //   const maleCalories = 66 + (6.3 * this.state.weight) + (12.9 * this.state.height) - (6.8 * this.state.age);
+  //   const femaleCalories = 655 + (4.3 * this.state.weight) + (4.7 * this.state.height) - (4.7 * this.state.age);
+  //   if (this.state.value === Male) {
+  //     const caloriesBeforeActivity = maleCalories;
+  //   } else {
+  //     const caloriesBeforeActivity = femaleCalories;
+  //   }
+
+  // }
+
   render() {
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <select>
-            <option disabled selected value="null">Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <input type="text" placeholder="Age" value="Age"/>
-        </div>
-        <div className="form-group">
-          <input type="text" placeholder="Weight" value="Weight"/>
-        </div>
-        <div className="form-group">
-          <input type="text" placeholder="Height" value="Height"/>
-        </div>
-        <div className="form-group">
-          <select>
-            <option disabled selected value="null">Select</option>
-            <option value="Sedentary">Sedentary (little or no exercise)</option>
-            <option value="Lightly Active">Lightly Active (light exercise/sport 1-3 days a week)</option>
-            <option value="Moderately Active">Moderately Active (moderate exercise/sport 3-5 days a week)</option>
-            <option value="Very Active">Very Active (hard exercise/sport 6-7 days a week)</option>
-            <option value="Extra Active">Extra Active (very hard exercise/sport & physical job or 2X training)</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      <div className="container calorie-form">
+        <h1>Your Info</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <select>
+              <option disabled selected value="null">Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Age" value={this.state.age}/>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Weight" value={this.state.weight}/>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Height" value={this.state.height}/>
+          </div>
+          <div className="form-group">
+            <select>
+              <option disabled selected value="null">Select</option>
+              <option value="Sedentary">Sedentary (little or no exercise)</option>
+              <option value="Lightly Active">Lightly Active (light exercise/sport 1-3 days a week)</option>
+              <option value="Moderately Active">Moderately Active (moderate exercise/sport 3-5 days a week)</option>
+              <option value="Very Active">Very Active (hard exercise/sport 6-7 days a week)</option>
+              <option value="Extra Active">Extra Active (very hard exercise/sport & physical job or 2X training)</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
