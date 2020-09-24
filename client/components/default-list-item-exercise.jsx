@@ -23,7 +23,7 @@ class Exercises extends React.Component {
                 </h5>
               </div>
               <div className="col-2 d-flex justify-content-center">
-                <button className="btn btn-success btn-block">
+                <button className="btn btn-success">
                       Add
                 </button>
               </div>
