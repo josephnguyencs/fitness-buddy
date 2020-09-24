@@ -14,19 +14,12 @@ function DefaultListItem(props) {
         <div className="card-header" id={`heading${index}`}>
           <h1 className="mb-0 cursor-pointer collapsed text-center" data-toggle="collapse" data-target={`#collapse${index}`}
             aria-expanded="true" aria-controls={`collapse${index}`}>
-            {/* <button className="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target={`#collapse${index}`}
-              aria-expanded="true" aria-controls={`collapse${index}`}> */}
             {element}
-            {/* </button> */}
           </h1>
         </div>
         <div id={`collapse${index}`} className="collapse" data-parent="#accordionExample" aria-labelledby={`heading${index}`}>
           <div className="card-body">
-            <div>
-              <h3>
-                <Exercises list={props.list.list} bodyPart={element}/>
-              </h3>
-            </div>
+            <Exercises list={props.list.list} bodyPart={element}/>
           </div>
         </div>
       </div>

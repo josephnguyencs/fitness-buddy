@@ -6,8 +6,11 @@ function Exercises(props) {
     if (element.bodyPart === props.bodyPart) {
       exercises.push(
         <div className="card row" key={element.exerciseId}>
-          <div className="card-header row justify-content-between align-items-center" id={`exerciseHeading${element.exerciseId}`}>
-            <div className="col-9 cursor-pointer collapsed" data-toggle="collapse" data-target={`#collapseInner${element.exerciseId}`} aria-expanded="true" aria-controls={`collapseInner${element.exerciseId}`} >
+          <div className="card-header row justify-content-between align-items-center collapsed  cursor-pointer"
+            id={`exerciseHeading${element.exerciseId}`} data-toggle="collapse"
+            data-target={`#collapseInner${element.exerciseId}`} aria-expanded="true"
+            aria-controls={`collapseInner${element.exerciseId}`} >
+            <div className="col-9">
               <h5>
                 {element.exercise}
               </h5>
@@ -18,7 +21,7 @@ function Exercises(props) {
               </button>
             </div>
           </div>
-          <div id={`collapseInner${element.exerciseId}`} className="collapse" data-parent="#exerciseAccordion" aria-labelledby={`exerciseHeading${element.exerciseId}`}>
+          <div id={`collapseInner${element.exerciseId}`} className="collapse" data-parent={`#${props.bodyPart}-exerciseAccordion`} aria-labelledby={`exerciseHeading${element.exerciseId}`}>
             <div className="card-body">
               <div>
                 <p>
@@ -34,8 +37,8 @@ function Exercises(props) {
 
   return (
     <>
-      <div className="accordion-inner">
-        <div className="accordion" id="exerciseAccordion" >
+      <div className={`${props.bodyPart}-accordion-inner`}>
+        <div className="accordion" id={`${props.bodyPart}-exerciseAccordion`} >
           {exercises}
         </div>
       </div>
