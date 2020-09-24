@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'calorie',
+      view: 'default',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -130,7 +130,7 @@ class App extends React.Component {
 
     if (this.state.view === 'table') {
       return (
-        <div className="container">
+        <>
           <Header />
           <TableDays handleClick={this.handleClick}/>
           <Table
@@ -139,7 +139,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
-        </div>
+        </>
       );
     } else if (this.state.view === 'choose') {
       return (
