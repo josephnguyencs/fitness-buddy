@@ -11,10 +11,11 @@ class Table extends React.Component {
         { name: 'pull-ups', description: 'pull', exerciseId: 3 }
       ]
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.props.handleClick('choose');
+    this.props.setView('choose');
   }
 
   render() {
@@ -24,6 +25,7 @@ class Table extends React.Component {
           key={item.customExerciseId}
           name={item.exercise}
           description={item.description}
+          setView={this.props.setView}
           handleDeleteClick={this.props.handleDeleteClick}
           handleUpdateClick={this.props.handleUpdateClick}
           id={item.customExerciseId}
@@ -36,7 +38,7 @@ class Table extends React.Component {
         <>
           <h3 className="text-center">No exercises added.</h3>
           <div className="row justify-content-center">
-            <button className="btn btn-success mt-5" onClick={this.props.handleClick}>Add Exercise</button>
+            <button className="btn btn-success mt-5" onClick={this.handleClick}>Add Exercise</button>
           </div>
         </>
       );
@@ -51,7 +53,7 @@ class Table extends React.Component {
         </table>
 
         <div className="row justify-content-center">
-          <button className="btn btn-success mt-5" onClick={this.props.handleClick}>Add Exercise</button>
+          <button className="btn btn-success mt-5" onClick={this.handleClick}>Add Exercise</button>
         </div>
       </div>
     );

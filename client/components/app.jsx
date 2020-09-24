@@ -9,25 +9,26 @@ import DefaultList from './default-list';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
+import RecommendedCalories from './recommended-cal';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'default',
+      view: 'table',
       day: '1',
       exercises: [],
       defaultExercises: [],
-      activeCard: {},
+      activeCard: {
+        exercise: '',
+        description: ''
+      },
       message: null,
       isLoading: true,
       calories: 100
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleDefaultClick = this.handleDefaultClick.bind(this);
-    this.handleCustomClick = this.handleCustomClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
@@ -36,6 +37,7 @@ class App extends React.Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
+    this.setView = this.setView.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +53,12 @@ class App extends React.Component {
       });
   }
 
+  setView(newView) {
+    this.setState({
+      view: newView
+    });
+  }
+
   setExercises(dayId) {
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
@@ -62,7 +70,10 @@ class App extends React.Component {
 
   setDay(dayId) {
     this.setState({
-      day: dayId
+      day: dayId,
+      activeCard: {
+        day: dayId
+      }
     });
   }
 
@@ -75,19 +86,19 @@ class App extends React.Component {
     }
     let calories = null;
     switch (activity) {
-      case 'sedentary':
+      case 'Sedentary':
         calories = bmr * 1.2;
         break;
-      case 'lightly-active':
+      case 'Lightly Active':
         calories = bmr * 1.375;
         break;
-      case 'moderately-active':
+      case 'Moderately Active':
         calories = bmr * 1.55;
         break;
-      case 'very-active':
+      case 'Very Active':
         calories = bmr * 1.725;
         break;
-      case 'extra-active':
+      case 'Extra Active':
         calories = bmr * 1.9;
         break;
       default:
@@ -109,32 +120,12 @@ class App extends React.Component {
     this.setExercises(dayId);
   }
 
-  handleAddClick() {
-    this.setState({
-      view: 'choose'
-    });
-  }
-
-  handleDefaultClick() {
-    this.setState({
-      view: 'default'
-    });
-  }
-
-  handleCustomClick() {
-    this.setState({
-      view: 'custom'
-    });
-  }
-
   handleCancelClick() {
-    const dayId = this.state.day;
     this.setState({
       view: 'table',
       activeCard: {
         exercise: '',
-        description: '',
-        dayId
+        description: ''
       }
     });
   }
@@ -149,27 +140,21 @@ class App extends React.Component {
         });
       }
     });
-    this.setState({
-      view: 'update'
-    });
+    this.setView('update');
   }
 
   handleAddDefault(event) {
     if (event.target.tagName === 'BUTTON') {
       const target = event.currentTarget;
-      const day = this.state.day;
       const name = target.firstElementChild.firstElementChild.textContent;
       const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
       this.setState({
         activeCard: {
           exercise: name,
-          description: desc,
-          dayId: day
+          description: desc
         }
       });
-      this.setState({
-        view: 'custom'
-      });
+      this.setView('custom');
     }
   }
 
@@ -196,10 +181,11 @@ class App extends React.Component {
       return (
         <>
           <Header />
+          <RecommendedCalories calories={this.state.calories} />
           <TableDays handleClick={this.handleClick}/>
           <Table
             exercises={this.state.exercises}
-            handleClick={this.handleAddClick}
+            setView={this.setView}
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
@@ -209,7 +195,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <DefaultAndCustomModal handleCancelClick={this.handleCancelClick} handleDefaultClick={this.handleDefaultClick} handleCustomClick={this.handleCustomClick}/>
+          <DefaultAndCustomModal setView={this.setView} handleCancelClick={this.handleCancelClick}/>
         </>
       );
     } else if (this.state.view === 'default') {
