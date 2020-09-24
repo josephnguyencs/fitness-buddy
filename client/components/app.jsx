@@ -10,6 +10,7 @@ import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
 import RecommendedCalories from './recommended-cal';
+import TimerModal from './timer-modal';
 
 class App extends React.Component {
   constructor(props) {
@@ -235,6 +236,12 @@ class App extends React.Component {
       return (
         <>
           <CalorieCounterResult/>
+        </>
+      );
+    } else if (this.state.view === 'time-modal') {
+      return (
+        <>
+          <TimerModal />
         </>
       );
     }
