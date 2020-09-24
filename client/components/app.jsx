@@ -18,7 +18,10 @@ class App extends React.Component {
       day: '1',
       exercises: [],
       defaultExercises: [],
-      activeCard: {},
+      activeCard: {
+        exercise: '',
+        description: ''
+      },
       message: null,
       isLoading: true,
       calories: 100
@@ -66,7 +69,10 @@ class App extends React.Component {
 
   setDay(dayId) {
     this.setState({
-      day: dayId
+      day: dayId,
+      activeCard: {
+        day: dayId
+      }
     });
   }
 
@@ -114,13 +120,11 @@ class App extends React.Component {
   }
 
   handleCancelClick() {
-    const dayId = this.state.day;
     this.setState({
       view: 'table',
       activeCard: {
         exercise: '',
-        description: '',
-        dayId
+        description: ''
       }
     });
   }
@@ -141,14 +145,12 @@ class App extends React.Component {
   handleAddDefault(event) {
     if (event.target.tagName === 'BUTTON') {
       const target = event.currentTarget;
-      const day = this.state.day;
       const name = target.firstElementChild.firstElementChild.textContent;
       const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
       this.setState({
         activeCard: {
           exercise: name,
-          description: desc,
-          dayId: day
+          description: desc
         }
       });
       this.setView('custom');
