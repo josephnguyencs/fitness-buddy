@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 
 class CalorieCounter extends React.Component {
   constructor(props) {
@@ -38,7 +39,8 @@ class CalorieCounter extends React.Component {
   render() {
 
     return (
-      <div className="container calorie-form">
+      <div className="container text-center border border-primary">
+        <Header />
         <h1>Your Info</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -52,10 +54,10 @@ class CalorieCounter extends React.Component {
             <input type="text" placeholder="Age" value={this.state.age}/>
           </div>
           <div className="form-group">
-            <input type="text" placeholder="Weight" value={this.state.weight}/>
+            <input type="text" placeholder="Weight (lbs)" value={this.state.weight}/>
           </div>
           <div className="form-group">
-            <input type="text" placeholder="Height" value={this.state.height}/>
+            <input type="text" placeholder="Height (inches)" value={this.state.height}/>
           </div>
           <div className="form-group">
             <select>
