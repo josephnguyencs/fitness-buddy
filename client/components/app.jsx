@@ -10,6 +10,7 @@ import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
 import RecommendedCalories from './recommended-cal';
+import Stopwatch from './stopwatch';
 
 class App extends React.Component {
   constructor(props) {
@@ -228,6 +229,13 @@ class App extends React.Component {
       return (
         <>
           <CalorieCounterResult/>
+        </>
+      );
+    } else if (this.state.view === 'stopwatch') {
+      return (
+        <>
+          <Stopwatch />
+          <Footer setView={this.setView}/>
         </>
       );
     }

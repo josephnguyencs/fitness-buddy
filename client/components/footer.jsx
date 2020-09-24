@@ -13,7 +13,9 @@ function Footer(props) {
       }} href="#">
         <i className="fas fa-apple-alt fa-2x"></i>
       </a>
-      <a className="navbar-brand" >
+      <a className="navbar-brand" onClick={() => {
+        props.setView('stopwatch');
+      }} >
         <i className="fas fa-clock fa-2x"></i>
       </a>
     </div>
