@@ -25,7 +25,7 @@ class App extends React.Component {
       },
       message: null,
       isLoading: true,
-      calories: 100
+      calories: null
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -178,20 +178,36 @@ class App extends React.Component {
 
   render() {
     if (this.state.view === 'table') {
-      return (
-        <>
-          <Header />
-          <RecommendedCalories calories={this.state.calories} />
-          <TableDays handleClick={this.handleClick}/>
-          <Table
-            exercises={this.state.exercises}
-            setView={this.setView}
-            handleDeleteClick={this.handleDeleteClick}
-            handleUpdateClick={this.handleUpdateClick}
-          />
-          <Footer setView={this.setView}/>
-        </>
-      );
+      if (this.state.calories) {
+        return (
+          <>
+            <Header />
+            <RecommendedCalories calories={this.state.calories} />
+            <TableDays handleClick={this.handleClick}/>
+            <Table
+              exercises={this.state.exercises}
+              setView={this.setView}
+              handleDeleteClick={this.handleDeleteClick}
+              handleUpdateClick={this.handleUpdateClick}
+            />
+            <Footer setView={this.setView}/>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Header />
+            <TableDays handleClick={this.handleClick} />
+            <Table
+              exercises={this.state.exercises}
+              setView={this.setView}
+              handleDeleteClick={this.handleDeleteClick}
+              handleUpdateClick={this.handleUpdateClick}
+            />
+            <Footer setView={this.setView} />
+          </>
+        );
+      }
     } else if (this.state.view === 'choose') {
       return (
         <>
