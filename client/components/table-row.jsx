@@ -20,40 +20,40 @@ class TableRow extends React.Component {
     // console.log(this.props);
     if (this.state.isClicked === true) {
       return (
-        <div className="container">
-          <tbody>
-            <tr>
-              <td onClick={this.showDescription}>{this.props.name}</td>
-              <UpdateAndDelete
-                onClick={this.handleClick}
-                handleDeleteClick={this.props.handleDeleteClick}
-                handleUpdateClick={this.props.handleUpdateClick}
-                id={this.props.id}
-              />
-            </tr>
-            <tr>
-              <Description description={this.props.description} />
-            </tr>
-          </tbody>
 
-        </div>
+        <>
+          <tr className="text-right">
+            <td onClick={this.showDescription}>{this.props.name}</td>
+            <UpdateAndDelete
+              onClick={this.handleClick}
+              handleDeleteClick={this.props.handleDeleteClick}
+              handleUpdateClick={this.props.handleUpdateClick}
+              id={this.props.id}
+            />
+          </tr>
+          <tr className="text-left">
+            <Description description={this.props.description} />
+          </tr>
+        </>
+
       );
     } else {
       return (
-        <div>
-          <tbody>
-            <tr>
-              <td onClick={this.showDescription}>{this.props.name}</td>
-              <UpdateAndDelete
-                onClick={this.handleClick}
-                handleDeleteClick={this.props.handleDeleteClick}
-                handleUpdateClick={this.props.handleUpdateClick}
-                id={this.props.id}
-              />
-            </tr>
-          </tbody>
 
-        </div>
+        <>
+
+          <tr className="text-right">
+            <td onClick={this.showDescription}>{this.props.name}</td>
+            <UpdateAndDelete
+              onClick={this.handleClick}
+              handleDeleteClick={this.props.handleDeleteClick}
+              handleUpdateClick={this.props.handleUpdateClick}
+              id={this.props.id}
+            />
+          </tr>
+
+        </>
+
       );
     }
   }

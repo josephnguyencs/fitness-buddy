@@ -43,11 +43,11 @@ class Table extends React.Component {
     }
     return (
       <div>
-        <div className="container border border-primary rounded">
-          <table>
-            {tableData}
-          </table>
-        </div>
+
+        <table className="w-100">
+          {tableData}
+        </table>
+
         <div className="row justify-content-center">
           <button className="btn btn-success mt-5" onClick={this.props.handleClick}>Add Exercise</button>
         </div>
