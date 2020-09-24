@@ -14,10 +14,9 @@ function Footer(props) {
         <i className="fas fa-apple-alt fa-2x"></i>
       </a>
       <a className="navbar-brand" >
-        <i className="fas fa-dumbbell fa-2x"></i>
+        <i className="fas fa-clock fa-2x"></i>
       </a>
     </div>
-
   );
 }
 
