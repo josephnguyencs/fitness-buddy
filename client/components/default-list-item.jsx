@@ -19,7 +19,7 @@ function DefaultListItem(props) {
         </div>
         <div id={`collapse${index}`} className="collapse" data-parent="#accordionExample" aria-labelledby={`heading${index}`}>
           <div className="card-body">
-            <Exercises list={props.list.list} bodyPart={element}/>
+            <Exercises list={props.list.list} bodyPart={element} handleAddDefault={props.handleAddDefault}/>
           </div>
         </div>
       </div>
