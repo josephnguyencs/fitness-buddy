@@ -25,7 +25,7 @@ class App extends React.Component {
       },
       message: null,
       isLoading: true,
-      calories: null
+      calories: 1935
     };
     this.setDay = this.setDay.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -38,6 +38,7 @@ class App extends React.Component {
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
     this.setView = this.setView.bind(this);
+    this.resetCalories = this.resetCalories.bind(this);
   }
 
   componentDidMount() {
@@ -130,6 +131,12 @@ class App extends React.Component {
     });
   }
 
+  resetCalories() {
+    this.setState({
+      calories: null
+    });
+  }
+
   handleUpdateClick(event) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
@@ -178,36 +185,20 @@ class App extends React.Component {
 
   render() {
     if (this.state.view === 'table') {
-      if (this.state.calories) {
-        return (
-          <>
-            <Header />
-            <RecommendedCalories calories={this.state.calories} />
-            <TableDays handleClick={this.handleClick}/>
-            <Table
-              exercises={this.state.exercises}
-              setView={this.setView}
-              handleDeleteClick={this.handleDeleteClick}
-              handleUpdateClick={this.handleUpdateClick}
-            />
-            <Footer setView={this.setView}/>
-          </>
-        );
-      } else {
-        return (
-          <>
-            <Header />
-            <TableDays handleClick={this.handleClick} />
-            <Table
-              exercises={this.state.exercises}
-              setView={this.setView}
-              handleDeleteClick={this.handleDeleteClick}
-              handleUpdateClick={this.handleUpdateClick}
-            />
-            <Footer setView={this.setView} />
-          </>
-        );
-      }
+      return (
+        <>
+          <Header />
+          <RecommendedCalories resetCalories={this.resetCalories} calories={this.state.calories} />
+          <TableDays handleClick={this.handleClick}/>
+          <Table
+            exercises={this.state.exercises}
+            setView={this.setView}
+            handleDeleteClick={this.handleDeleteClick}
+            handleUpdateClick={this.handleUpdateClick}
+          />
+          <Footer setView={this.setView}/>
+        </>
+      );
     } else if (this.state.view === 'choose') {
       return (
         <>
