@@ -8,12 +8,13 @@ import DefaultList from './default-list';
 // import Footer from './footer';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
+import CalorieCounterResult from './calorie-counter-result';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'default',
+      view: 'calorie',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -171,8 +172,13 @@ class App extends React.Component {
           <CalorieCounter />
         </>
       );
+    } else if (this.state.view === 'result') {
+      return (
+        <>
+          <CalorieCounterResult/>
+        </>
+      );
     }
-
   }
 }
 
