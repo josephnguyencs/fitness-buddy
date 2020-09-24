@@ -1,7 +1,7 @@
-.container {
+/* .container {
   max-width: 400px;
   margin: 0;
-}
+} */
 
 .header {
   width: 100%;
@@ -26,6 +26,18 @@
   /* justify-content: center; */
   /* align-items: center; */
 /* } */
+
+.calorie-title {
+  margin: 5% 0% 4% 0%;
+}
+
+.calorie-option {
+  font-size: 12px;
+}
+
+.calorie-submit {
+  margin-top: 7%;
+}
 
 .lifestyle {
   width: 49%;
