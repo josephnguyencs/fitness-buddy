@@ -6,9 +6,9 @@ function Exercises(props) {
     if (element.bodyPart === props.bodyPart) {
       exercises.push(
         <div key={element.exerciseId} className="row justify-content-between mt-2">
-          <h3 id={element.exerciseId}>
+          <h5 id={element.exerciseId}>
             {element.exercise}
-          </h3>
+          </h5>
           <button className="btn btn-success">
             Add
           </button>
