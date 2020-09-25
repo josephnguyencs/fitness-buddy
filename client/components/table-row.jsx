@@ -22,7 +22,7 @@ class TableRow extends React.Component {
       return (
 
         <>
-          <tr className="">
+          <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
             <UpdateAndDelete
               onClick={this.handleClick}
@@ -41,7 +41,7 @@ class TableRow extends React.Component {
       return (
 
         <>
-          <tr className="">
+          <tr>
             <td onClick={this.showDescription}>{this.props.name}</td>
             <UpdateAndDelete
               onClick={this.handleClick}
