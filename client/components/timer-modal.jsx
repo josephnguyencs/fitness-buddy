@@ -4,7 +4,7 @@ function TimerModal(props) {
   return (
     <div className="fitness-modal-background">
       <div className="fitness-modal-content">
-        <form>
+        <form onSubmit={props.handleSubmit}>
           <i className="fas fa-times close-modal" onClick={props.handleClick}></i>
           <h3 className="text-center">Workout Time</h3>
           <div className="form-row justify-content-center align-items-center">
@@ -31,9 +31,7 @@ function TimerModal(props) {
             </div>
           </div>
           <div className="form-row justify-content-center mt-5">
-            <button onClick={() => {
-              props.countdown(props.values.workoutMin, props.values.workoutSec, props.values.restMin, props.values.restSec);
-            }} className="btn btn-primary set-time">Set Time</button>
+            <button className="btn btn-primary set-time">Set Time</button>
           </div>
         </form>
       </div>
