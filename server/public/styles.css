@@ -118,8 +118,8 @@
 }
 
 .clock {
-  width: 50vh;
-  height: 50vh;
+  width: 30vh;
+  height: 30vh;
   border-radius: 50%;
   border-style: solid;
   display: flex;
@@ -152,7 +152,7 @@
 }
 
 .set-time {
-  margin-top: 30px;
+  padding: 0 25px;
 }
 
 .time-input {
