@@ -151,6 +151,22 @@ class Stopwatch extends React.Component {
     this.handleClick();
   }
 
+  formatTime(timeInput) {
+    let formattedTime = '';
+    const time = `${timeInput}`;
+    // console.log(typeof time, time);
+    if (time.length < 2) {
+      formattedTime = `0${time}`;
+    } else {
+      formattedTime = time;
+    }
+    if (!formattedTime) {
+      return '00';
+    } else {
+      return formattedTime;
+    }
+  }
+
   render() {
     if (this.state.view === 'timer-modal') {
       return (
@@ -164,7 +180,7 @@ class Stopwatch extends React.Component {
         return (
           <div className="clock-container">
             <div className="clock">
-              <h1>{this.state.restMin}:{this.state.restSec}</h1>
+              <h1>{this.formatTime(this.state.restMin)}:{this.formatTime(this.state.restSec)}</h1>
             </div>
             <h1 className="timer-state">{this.state.timer}</h1>
             <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
@@ -174,7 +190,7 @@ class Stopwatch extends React.Component {
         return (
           <div className="clock-container">
             <div className="clock">
-              <h1>{this.state.restMin}:{this.state.restSec}</h1>
+              <h1>{this.formatTime(this.state.restMin)}:{this.formatTime(this.state.restSec)}</h1>
             </div>
             <h1 className="timer-state">{this.state.timer}</h1>
             <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
@@ -186,7 +202,7 @@ class Stopwatch extends React.Component {
         return (
           <div className="clock-container">
             <div className="clock">
-              <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
+              <h1>{this.formatTime(this.state.workoutMin)}:{this.formatTime(this.state.workoutSec)}</h1>
             </div>
             <h1 className="timer-state">{this.state.timer}</h1>
             <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
@@ -196,7 +212,7 @@ class Stopwatch extends React.Component {
         return (
           <div className="clock-container">
             <div className="clock">
-              <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
+              <h1>{this.formatTime(this.state.workoutMin)}:{this.formatTime(this.state.workoutSec)}</h1>
             </div>
             <h1 className="timer-state">{this.state.timer}</h1>
             <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
