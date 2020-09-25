@@ -96,7 +96,23 @@ class Stopwatch extends React.Component {
   }
 
   countdown(workoutMin, workoutSec, restMin, restSec) {
-    this.workoutCountdown(workoutMin, workoutSec, restMin, restSec);
+    let newWorkoutMin = workoutMin;
+    let newWorkoutSec = workoutSec;
+    let newRestMin = restMin;
+    let newRestSec = restSec;
+    if (isNaN(workoutMin)) {
+      newWorkoutMin = 0;
+    }
+    if (isNaN(workoutSec)) {
+      newWorkoutSec = 0;
+    }
+    if (isNaN(restMin)) {
+      newRestMin = 0;
+    }
+    if (isNaN(restSec)) {
+      newRestSec = 0;
+    }
+    this.workoutCountdown(newWorkoutMin, newWorkoutSec, newRestMin, newRestSec);
     this.handleClick();
   }
 
