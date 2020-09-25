@@ -204,9 +204,15 @@
 }
 
 .table-container {
-  height: 380px;
+  max-height: 373px;
 }
 
 .timer-state {
   margin-top: 30px;
+}
+
+.add-exercise {
+  position: sticky;
+  width: 100%;
+  bottom: 76px;
 }
