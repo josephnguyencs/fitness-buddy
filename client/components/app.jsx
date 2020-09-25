@@ -17,7 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'stopwatch',
+      view: 'table',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -190,7 +190,10 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <RecommendedCalories resetCalories={this.resetCalories} calories={this.state.calories} />
+          <RecommendedCalories
+            resetCalories={this.resetCalories}
+            calories={this.state.calories}
+          />
 
           <TableDays handleClick={this.handleClick}/>
           <Table
@@ -207,31 +210,52 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <DefaultAndCustomModal setView={this.setView} handleCancelClick={this.handleCancelClick}/>
+          <DefaultAndCustomModal
+            setView={this.setView}
+            handleCancelClick={this.handleCancelClick}
+          />
         </>
       );
     } else if (this.state.view === 'default') {
       return (
         <>
-          <DefaultList list={this.state.defaultExercises} handleCancelClick={this.handleCancelClick} handleAddDefault={this.handleAddDefault} />
+          <DefaultList
+            list={this.state.defaultExercises}
+            handleCancelClick={this.handleCancelClick}
+            handleAddDefault={this.handleAddDefault}
+          />
         </>
       );
     } else if (this.state.view === 'custom') {
       return (
         <>
-          <Custom setExercises={this.setExercises} updateExercises={this.updateExercises} activeCard={this.state.activeCard} handleCancelClick={this.handleCancelClick} day={this.state.day}/>
+          <Custom setExercises={this.setExercises}
+            updateExercises={this.updateExercises}
+            activeCard={this.state.activeCard}
+            handleCancelClick={this.handleCancelClick}
+            day={this.state.day}
+          />
         </>
       );
     } else if (this.state.view === 'update') {
       return (
         <>
-          <UpdateExercise setExercises={this.setExercises} handleCancelClick={this.handleCancelClick} exercise={this.state.activeCard} day={this.state.day}/>
+          <UpdateExercise
+            setExercises={this.setExercises}
+            handleCancelClick={this.handleCancelClick}
+            exercise={this.state.activeCard}
+            day={this.state.day}
+          />
         </>
       );
     } else if (this.state.view === 'calorie') {
       return (
         <>
-          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories} setView={this.setView}/>
+          <CalorieCounter
+            caloriesFunction={this.updateCalories}
+            calories={this.state.calories}
+            setView={this.setView}
+          />
           <Footer setView={this.setView}/>
 
         </>

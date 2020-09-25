@@ -10,6 +10,27 @@
   padding: 0 3rem;
 }
 
+.main-table-div {
+  margin: auto;
+  /* align-items: center; */
+  width: 80%;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.main-table {
+  width: 100%;
+}
+
+.main-table-body {
+  width: 100%;
+}
+
+.update-and-delete {
+  display: flex;
+  text-align: right;
+}
+
 .footer {
   width: 100%;
   position: absolute;
