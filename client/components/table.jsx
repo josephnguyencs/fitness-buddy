@@ -41,21 +41,23 @@ class Table extends React.Component {
       );
     }
     return (
-      <div className="overflow-auto table-container">
-        <div className="main-table-div">
-          <table className="main-table">
-            <tbody className="main-table-body">
-              {tableData}
-            </tbody>
-          </table>
+      <>
+        <div className="overflow-auto table-container">
+          <div className="main-table-div">
+            <table className="main-table">
+              <tbody className="main-table-body">
+                {tableData}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div className="text-center">
+        <div className="text-center add-exercise">
           <button
             className="btn btn-success mt-5"
             onClick={this.handleClick}>Add Exercise
           </button>
         </div>
-      </div>
+      </>
     );
   }
 
