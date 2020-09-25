@@ -10,7 +10,8 @@ class Stopwatch extends React.Component {
       workoutMin: '00',
       workoutSec: '00',
       restMin: '00',
-      restSec: '00'
+      restSec: '00',
+      isClicked: 'Set Time'
     };
     this.countdown = this.countdown.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -20,11 +21,30 @@ class Stopwatch extends React.Component {
     this.workoutInverval = null;
     this.restInterval = null;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.isClicked = this.isClicked.bind(this);
   }
 
   handleClick() {
     if (this.state.view === 'stopwatch') {
-      this.setState({ view: 'timer-modal' });
+      if (this.state.isClicked === 'Set Time') {
+        this.setState({
+          view: 'timer-modal'
+        });
+      } else {
+        this.setState({
+          timer: 'Workout',
+          view: 'stopwatch',
+          workoutMin: '00',
+          workoutSec: '00',
+          restMin: '00',
+          restSec: '00',
+          isClicked: 'Set Time'
+        });
+        clearInterval(this.workoutInverval);
+        clearInterval(this.restInterval);
+        this.workoutInverval = null;
+        this.restInterval = null;
+      }
     } else {
       this.setState({
         view: 'stopwatch'
@@ -36,6 +56,16 @@ class Stopwatch extends React.Component {
     const name = event.target.name;
     const value = parseInt(event.target.value);
     this.setState({ [name]: value });
+  }
+
+  isClicked() {
+    if (this.state.isClicked === 'Set Time') {
+      this.setState({ isClicked: 'Reset' });
+    } else {
+      this.setState({
+        isClicked: 'Set Time'
+      });
+    }
   }
 
   handleSubmit(event) {
@@ -125,30 +155,54 @@ class Stopwatch extends React.Component {
     if (this.state.view === 'timer-modal') {
       return (
         <>
-          <TimerModal handleSubmit={this.handleSubmit} countdown={this.countdown} onChange={this.onChange} handleClick={this.handleClick} values={this.state}/>
+          <TimerModal isClicked={this.isClicked} handleSubmit={this.handleSubmit} countdown={this.countdown} onChange={this.onChange} handleClick={this.handleClick} values={this.state} />
         </>
       );
     }
     if (this.state.timer === 'Rest') {
-      return (
-        <div className="clock-container">
-          <div className="clock">
-            <h1>{this.state.restMin}:{this.state.restSec}</h1>
+      if (this.state.isClicked === 'Set Time') {
+        return (
+          <div className="clock-container">
+            <div className="clock">
+              <h1>{this.state.restMin}:{this.state.restSec}</h1>
+            </div>
+            <h1 className="timer-state">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
           </div>
-          <h1 className="timer-state">{this.state.timer}</h1>
-          <button onClick={this.handleClick} className="set-time">Set Time</button>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="clock-container">
+            <div className="clock">
+              <h1>{this.state.restMin}:{this.state.restSec}</h1>
+            </div>
+            <h1 className="timer-state">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+          </div>
+        );
+      }
     } else {
-      return (
-        <div className="clock-container">
-          <div className="clock">
-            <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
+      if (this.state.isClicked === 'Set Time') {
+        return (
+          <div className="clock-container">
+            <div className="clock">
+              <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
+            </div>
+            <h1 className="timer-state">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
           </div>
-          <h1 className="timer-state">{this.state.timer}</h1>
-          <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">Set Time</button>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="clock-container">
+            <div className="clock">
+              <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
+            </div>
+            <h1 className="timer-state">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+          </div>
+        );
+      }
     }
   }
 }
