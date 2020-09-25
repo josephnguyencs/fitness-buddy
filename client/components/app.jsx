@@ -173,6 +173,7 @@ class App extends React.Component {
   }
 
   handleDeleteClick(event) {
+    const exercises = this.state.exercises.map(item => ({ ...item }));
     const itemId = event.currentTarget.getAttribute('id');
     const data = { customExerciseId: itemId, dayId: this.state.day };
     fetch('/api/routine', {
@@ -181,8 +182,18 @@ class App extends React.Component {
       body: JSON.stringify(data)
     })
       .then(res => res.json())
+      .then(res => {
+        exercises.forEach((item, index) => {
+          if (item.customExerciseId === res.customExerciseId) {
+            exercises.splice(index, 1);
+          }
+        });
+        return exercises;
+      })
+      .then(res => this.setState({
+        exercises: res
+      }))
       .catch(err => console.error(err));
-    this.setExercises(this.state.day);
   }
 
   render() {
@@ -197,6 +208,7 @@ class App extends React.Component {
 
           <TableDays handleClick={this.handleClick}/>
           <Table
+            day={this.state.day}
             exercises={this.state.exercises}
             setView={this.setView}
             handleDeleteClick={this.handleDeleteClick}

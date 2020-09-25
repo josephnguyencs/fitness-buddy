@@ -351,6 +351,20 @@ COPY public."customExercise" ("customExerciseId", name, description) FROM stdin;
 2	newest mon exercise	newest mon description
 3	sunday exercise	sunday description
 4	Tuesday exercise	Tuesday description
+5	Push Ups: Wide	Start in a plank position with hands wider than shoulders. Face fingers forward. Slowly bend elbows out to the side as you lower your body to the floor. Stop when your chest is near the floor. Extend your elbows to go back to plank position.
+6	Superman	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
+7	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.
+8	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+9	Air Squats	Keep your feet at shoulder width apart and pointed straight ahead. When squatting, your hips will move down and back. Your lumbar curve should be maintained, and your heels should stay flat on the floor the entire time. In air squats, your hips will descend lower than your knees.
+10	In & Outs	 Sit on the floor with your palms down at your sides. Utilizing your core muscles, bring both knees into your chest.
+11	Close Grip Push Ups	Lay on the floor with your face, palms and toes facing down. Keep your legs and back straight. Place your palms on the floor with your elbows touching your sides. Extend your arms straight to push your body up and back down again, keeping your arms close to your sides and your elbows pointing towards your feet.
+12	Push Ups: Standard	Start in a plank position with hands roughly shoulder-width apart. Face fingers forward. Slowly bend elbows out to the side as you lower your body to the floor. Stop when your chest is near the floor. Extend your elbows to go back to plank position.
+13	Wide Grip Pull-Ups	Use a wide grip on the bar. If you want to make it even tougher, pause for a second each time you get to the top of the move.
+14	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.
+15	Bicep Curls Side	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing away from your body. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+16	Lunges	Stand tall with feet hip-width apart. Engage your core. Take a big step forward with your right leg. Start to shift your weight forward so your heel hits the floor first. Lower your body until your right thigh is parallel to the floor and your right shin is vertical. It’s OK if your knee shifts forward a little as long as it doesn’t go past your right toe. If mobility allows, lightly tap your left knee to the floor while keeping your weight on your right heel. Press into your right heel to drive back up to starting position. Repeat on the other side.
+17	Bicycles	Sitting on the floor, extend your legs out in front of you and lift your feet off the floor. Bring one foot in towards your body and extend the other leg out, and alternate kicking your feet out forward in the air like you’re riding a bike.
+18	Side-Tri Rises	Lie on your side with your legs straight or angled slightly at the hips. Place the hand of your lower arm on its opposite shoulder, and place your other hand firmly on the floor. With your elbow pointed towards your feet, press into the floor and extend your arm, lifting your upper body off the floor.
 \.
 
 
@@ -378,6 +392,20 @@ COPY public."dayExercise" ("dayId", "customExerciseId") FROM stdin;
 2	2
 1	3
 3	4
+1	5
+1	6
+1	7
+1	8
+1	9
+1	10
+1	11
+1	12
+1	13
+1	14
+1	15
+1	16
+1	17
+1	18
 \.
 
 
@@ -545,7 +573,7 @@ COPY public.routine ("routineId", "userId", "recommendedCalories") FROM stdin;
 --
 
 COPY public."user" ("userId", "firstName", "lastName", email, password, "createdAt") FROM stdin;
-1	Michael	Poole	test@gmail.com	testpassword	2020-09-21 22:31:39.268283+00
+1	Michael	Poole	test@gmail.com	testpassword	2020-09-21 17:31:39.268283-05
 \.
 
 
@@ -560,7 +588,7 @@ SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 7, true);
 -- Name: customExercise_customExerciseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 4, true);
+SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 18, true);
 
 
 --

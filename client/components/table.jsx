@@ -4,13 +4,7 @@ import TableRow from './table-row';
 class Table extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      monday: [
-        { name: 'curls', description: 'curl it', exerciseId: 1 },
-        { name: 'pushups', description: 'push', exerciseId: 2 },
-        { name: 'pull-ups', description: 'pull', exerciseId: 3 }
-      ]
-    };
+    this.state = {};
     this.handleClick = this.handleClick.bind(this);
   }
 
