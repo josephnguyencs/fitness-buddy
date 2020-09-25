@@ -154,7 +154,6 @@ class Stopwatch extends React.Component {
   formatTime(timeInput) {
     let formattedTime = '';
     const time = `${timeInput}`;
-    // console.log(typeof time, time);
     if (time.length < 2) {
       formattedTime = `0${time}`;
     } else {
