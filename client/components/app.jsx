@@ -18,7 +18,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'stopwatch',
-      view: 'calorie',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -247,6 +246,8 @@ class App extends React.Component {
           <Header />
           <Stopwatch />
           <Footer setView={this.setView}/>
+        </>
+      );
     } else if (this.state.view === 'time-modal') {
       return (
         <>
