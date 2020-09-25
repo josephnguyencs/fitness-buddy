@@ -20,13 +20,8 @@
   color: #fff;
 }
 
-/* .calorie-form { */
-  /* justify-content: center; */
-  /* align-items: center; */
-/* } */
-
 .calorie-title {
-  margin: 5% 0% 4% 0%;
+  margin: 8% 0% 13% 0%;
 }
 
 .calorie-option {
@@ -34,7 +29,8 @@
 }
 
 .calorie-submit {
-  margin-top: 7%;
+  margin-top: 12%;
+  padding: 3% 10%;
 }
 
 .lifestyle {
@@ -56,9 +52,33 @@
   margin: 4% 0% 0% 0%;
 }
 
+.calorie-table {
+  margin: auto;
+  /* width: 60%; */
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: nowrap; */
+  justify-content: center;
+}
+
+.calorie-t-body {
+  margin: auto;
+  text-align: right;
+  width: 70%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* align-items: center; */
+}
+
+.calorie-t-data-textbox {
+  padding-left: 7%;
+}
+
 .navbar {
   background-color: #4682B4;
 }
+
 .navbar-brand {
   display: flex;
   color: #fff;
@@ -68,8 +88,78 @@
   cursor: pointer;
 }
 
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.clock {
+  width: 50vh;
+  height: 50vh;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fitness-modal-background {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1000;
+}
+
+.fitness-modal-content {
+  position: relative;
+  background-color: white;
+  height: 80%;
+  margin: auto;
+  width: 80%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-time {
+  margin-top: 30px;
+}
+
+.time-input {
+  width: 75px;
+  height: 75px;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.time-seperator {
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+
+.set-time {
+  font-size: 2rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: red;
+}
+
 .margin-top-12 {
-   margin-top: 12rem;
+  margin-top: 12rem;
 }
 
 .max-width-350 {

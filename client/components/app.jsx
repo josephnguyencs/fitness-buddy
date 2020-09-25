@@ -10,12 +10,14 @@ import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
 import RecommendedCalories from './recommended-cal';
+import Stopwatch from './stopwatch';
+import TimerModal from './timer-modal';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'stopwatch',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -229,14 +231,29 @@ class App extends React.Component {
     } else if (this.state.view === 'calorie') {
       return (
         <>
-          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories}/>
+          <CalorieCounter caloriesFunction={this.updateCalories} calories={this.state.calories} setView={this.setView}/>
           <Footer setView={this.setView}/>
+
         </>
       );
     } else if (this.state.view === 'result') {
       return (
         <>
           <CalorieCounterResult/>
+        </>
+      );
+    } else if (this.state.view === 'stopwatch') {
+      return (
+        <>
+          <Header />
+          <Stopwatch />
+          <Footer setView={this.setView}/>
+        </>
+      );
+    } else if (this.state.view === 'time-modal') {
+      return (
+        <>
+          <TimerModal />
         </>
       );
     }

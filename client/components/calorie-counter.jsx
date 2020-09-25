@@ -16,6 +16,7 @@ class CalorieCounter extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -26,9 +27,12 @@ class CalorieCounter extends React.Component {
         [name]: value
       });
     } else {
-      this.setState({
-        [name]: parseInt(value)
-      });
+      const parsedValue = parseInt(value);
+      if (parsedValue) {
+        this.setState({
+          [name]: parsedValue
+        });
+      }
     }
   }
 
@@ -50,6 +54,10 @@ class CalorieCounter extends React.Component {
     }
   }
 
+  handleClick() {
+    this.setState({ view: 'calorie' });
+  }
+
   render() {
     const ageValue = this.state.age;
     const weightValue = this.state.weight;
@@ -58,13 +66,17 @@ class CalorieCounter extends React.Component {
     const activityValue = this.state.activitylevel;
     if (this.state.view === 'result') {
       return (
-        <CalorieCounterResult values={this.state} calories={this.props.calories}/>
+        <CalorieCounterResult
+          values={this.state}
+          calories={this.props.calories}
+          handleClick={this.handleClick}
+        />
       );
     }
     return (
       <div>
         <Header />
-        <div className="container text-center border border-primary">
+        <div className="container text-center">
           <h1 className="calorie-title">Your Info</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -75,22 +87,61 @@ class CalorieCounter extends React.Component {
               </select>
             </div>
             <div className="form-group">
-              <input name="age" type="text" placeholder="Age" value={ageValue} onChange={this.handleChange}/>
+              <table className="calorie-table">
+                <tbody className="calorie-t-body">
+                  <tr>
+                    <td className="calorie-t-data">
+                      <label>Age</label>
+                    </td>
+                    <td className="calorie-t-data calorie-t-data-textbox">
+                      <input
+                        name="age"
+                        type="text"
+                        placeholder="Age"
+                        value={ageValue}
+                        onChange={this.handleChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="calorie-t-data">
+                      <label>Weight (lbs)</label>
+                    </td>
+                    <td className="calorie-t-data calorie-t-data-textbox">
+                      <input
+                        name="weight"
+                        type="text"
+                        placeholder="Weight (lbs)"
+                        value={weightValue}
+                        onChange={this.handleChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="calorie-t-data">
+                      <label>Height (inches)</label>
+                    </td>
+                    <td className="calorie-t-data calorie-t-data-textbox">
+                      <input
+                        name="height"
+                        type="text"
+                        placeholder="Height (inches)"
+                        value={heightValue}
+                        onChange={this.handleChange}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div className="form-group">
-              <input name="weight" type="text" placeholder="Weight (lbs)" value={weightValue} onChange={this.handleChange}/>
-            </div>
-            <div className="form-group">
-              <input name="height" type="text" placeholder="Height (inches)" value={heightValue} onChange={this.handleChange}/>
-            </div>
-            <div className="form-group">
-              <select name="activitylevel" className="form-control form-control-sm" value={activityValue} onChange={this.handleChange}>
-                <option disabled className="calorie-option" value="default">Activity Level</option>
-                <option className="calorie-option" value="Sedentary">Sedentary (little or no exercise)</option>
-                <option className="calorie-option" value="Lightly Active">Lightly Active (light exercise/sport 1-3 days a week)</option>
-                <option className="calorie-option" value="Moderately Active">Moderately Active (moderate exercise/sport 3-5 days a week)</option>
-                <option className="calorie-option" value="Very Active">Very Active (hard exercise/sport 6-7 days a week)</option>
-                <option className="calorie-option" value="Extra Active">Extra Active (very hard exercise/sport & physical job or 2X training)</option>
+              <select name="activitylevel" value={activityValue} onChange={this.handleChange}>
+                <option className="calorie-option" value="default" disabled>Activity Level</option>
+                <option className="calorie-option" value="Sedentary">Sedentary</option>
+                <option className="calorie-option" value="Lightly Active">Lightly Active (1-3 days a week)</option>
+                <option className="calorie-option" value="Moderately Active">Moderately Active (3-5 days a week)</option>
+                <option className="calorie-option" value="Very Active">Very Active (6-7 days a week)</option>
+                <option className="calorie-option" value="Extra Active">Extra Active (7 days a week)</option>
               </select>
             </div>
             <div className="form-group">
