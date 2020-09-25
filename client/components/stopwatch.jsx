@@ -5,6 +5,7 @@ class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      timer: 'Workout',
       view: 'stopwatch',
       workoutMin: '00',
       workoutSec: '00',
@@ -14,6 +15,8 @@ class Stopwatch extends React.Component {
     this.countdown = this.countdown.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.workoutCountdown = this.workoutCountdown.bind(this);
+    this.restCountdown = this.restCountdown.bind(this);
     this.workoutInverval = null;
     this.restInterval = null;
   }
@@ -34,45 +37,66 @@ class Stopwatch extends React.Component {
     this.setState({ [name]: value });
   }
 
-  countdown(workoutMin, workoutSec, restMin, restSec) {
+  workoutCountdown(workoutMin, workoutSec, restMin, restSec) {
+    let newSec = workoutSec;
+    let newMin = workoutMin;
     this.workoutInverval = setInterval(() => {
-      this.setState(({ workoutSec: parseInt(this.state.workoutSec) - 1 }), state => {
+      this.setState(({ workoutSec: parseInt(newSec) - 1 }), state => {
+        console.log(this.state.workoutSec);
+        newSec--;
         if (this.state.workoutMin > 0 && this.state.workoutSec < 0) {
           this.setState({
-            workoutMin: parseInt(this.state.workoutMin) - 1,
+            workoutMin: parseInt(newMin) - 1,
             workoutSec: 59
           });
+          newMin--;
         } else if (this.state.workoutSec < 10 && this.state.workoutSec >= 0) {
           this.setState({ workoutSec: '0' + parseInt(this.state.workoutSec) });
         }
         if (this.state.workoutSec <= 0 && this.state.workoutMin === '00') {
           clearInterval(this.workoutInverval);
           this.setState({
-            workoutMin: '00',
-            workoutSec: '00'
+            workoutMin: workoutMin,
+            workoutSec: workoutSec,
+            timer: 'Rest'
           });
+          this.restCountdown(workoutMin, workoutSec, restMin, restSec);
         }
       });
     }, 1000);
-    this.restInverval = setInterval(() => {
-      this.setState(({ restSec: parseInt(this.state.restSec) - 1 }), state => {
+  }
+
+  restCountdown(workoutMin, workoutSec, restMin, restSec) {
+    let newMin = restMin;
+    let newSec = restSec;
+    this.restInterval = setInterval(() => {
+      this.setState(({ restSec: parseInt(newSec) - 1 }), state => {
+        console.log(this.state.restSec);
+        newSec--;
         if (this.state.restMin > 0 && this.state.restSec < 0) {
           this.setState({
-            restMin: parseInt(this.state.restMin) - 1,
+            restMin: parseInt(newMin) - 1,
             restSec: 59
           });
+          newMin--;
         } else if (this.state.restSec < 10 && this.state.restSec >= 0) {
           this.setState({ restSec: '0' + parseInt(this.state.restSec) });
         }
         if (this.state.restSec <= 0 && this.state.restMin === '00') {
-          clearInterval(this.restInverval);
+          clearInterval(this.restInterval);
           this.setState({
-            restMin: '00',
-            restSec: '00'
+            restMin: restMin,
+            restSec: restSec,
+            timer: 'Workout'
           });
+          this.workoutCountdown(workoutMin, workoutSec, restMin, restSec);
         }
       });
     }, 1000);
+  }
+
+  countdown(workoutMin, workoutSec, restMin, restSec) {
+    this.workoutCountdown(workoutMin, workoutSec, restMin, restSec);
     this.handleClick();
   }
 
@@ -84,12 +108,13 @@ class Stopwatch extends React.Component {
         </>
       );
     }
-    if (this.state.workoutMin === '00' && this.state.workoutSec === '00') {
+    if (this.state.timer === 'Rest') {
       return (
         <div className="clock-container">
           <div className="clock">
             <h1>{this.state.restMin}:{this.state.restSec}</h1>
           </div>
+          <h1 className="timer-state">{this.state.timer}</h1>
           <button onClick={this.handleClick} className="set-time">Set Time</button>
         </div>
       );
@@ -99,6 +124,7 @@ class Stopwatch extends React.Component {
           <div className="clock">
             <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
           </div>
+          <h1 className="timer-state">{this.state.timer}</h1>
           <button onClick={this.handleClick} className="set-time">Set Time</button>
         </div>
       );
