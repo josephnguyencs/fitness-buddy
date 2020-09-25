@@ -27,9 +27,12 @@ class CalorieCounter extends React.Component {
         [name]: value
       });
     } else {
-      this.setState({
-        [name]: parseInt(value)
-      });
+      const parsedValue = parseInt(value);
+      if (parsedValue) {
+        this.setState({
+          [name]: parsedValue
+        });
+      }
     }
   }
 
