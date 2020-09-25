@@ -191,6 +191,7 @@ class App extends React.Component {
         <>
           <Header />
           <RecommendedCalories resetCalories={this.resetCalories} calories={this.state.calories} />
+
           <TableDays handleClick={this.handleClick}/>
           <Table
             exercises={this.state.exercises}
@@ -198,6 +199,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
+
           <Footer setView={this.setView}/>
         </>
       );
