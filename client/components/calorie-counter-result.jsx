@@ -1,6 +1,7 @@
 import React from 'react';
 
 function CalorieCounterResult(props) {
+
   return (
     <div
       className="container text-center calorie-modal"
@@ -16,7 +17,7 @@ function CalorieCounterResult(props) {
       <div>
         <h3>Your total daily calorie needs are:</h3>
         <h1>{props.calories} Calories</h1>
-        <button className="btn btn-success calorie-return">Return</button>
+        <button className="btn btn-success calorie-return" onClick={props.handleClick}>Return</button>
       </div>
     </div>
   );
