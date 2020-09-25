@@ -19,6 +19,7 @@ class Stopwatch extends React.Component {
     this.restCountdown = this.restCountdown.bind(this);
     this.workoutInverval = null;
     this.restInterval = null;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClick() {
@@ -35,6 +36,23 @@ class Stopwatch extends React.Component {
     const name = event.target.name;
     const value = parseInt(event.target.value);
     this.setState({ [name]: value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    if (isNaN(this.state.workoutMin)) {
+      return null;
+    }
+    if (isNaN(this.state.workoutSec)) {
+      return null;
+    }
+    if (isNaN(this.state.restMin)) {
+      return null;
+    }
+    if (isNaN(this.state.restSec)) {
+      return null;
+    }
+    this.countdown(this.state.workoutMin, this.state.workoutSec, this.state.restMin, this.state.restSec);
   }
 
   workoutCountdown(workoutMin, workoutSec, restMin, restSec) {
@@ -96,23 +114,10 @@ class Stopwatch extends React.Component {
   }
 
   countdown(workoutMin, workoutSec, restMin, restSec) {
-    let newWorkoutMin = workoutMin;
-    let newWorkoutSec = workoutSec;
-    let newRestMin = restMin;
-    let newRestSec = restSec;
-    if (isNaN(workoutMin)) {
-      newWorkoutMin = 0;
+    if (!workoutSec) {
+      return null;
     }
-    if (isNaN(workoutSec)) {
-      newWorkoutSec = 0;
-    }
-    if (isNaN(restMin)) {
-      newRestMin = 0;
-    }
-    if (isNaN(restSec)) {
-      newRestSec = 0;
-    }
-    this.workoutCountdown(newWorkoutMin, newWorkoutSec, newRestMin, newRestSec);
+    this.workoutCountdown(workoutMin, workoutSec, restMin, restSec);
     this.handleClick();
   }
 
@@ -120,7 +125,7 @@ class Stopwatch extends React.Component {
     if (this.state.view === 'timer-modal') {
       return (
         <>
-          <TimerModal countdown={this.countdown} onChange={this.onChange} handleClick={this.handleClick} values={this.state}/>
+          <TimerModal handleSubmit={this.handleSubmit} countdown={this.countdown} onChange={this.onChange} handleClick={this.handleClick} values={this.state}/>
         </>
       );
     }
@@ -141,7 +146,7 @@ class Stopwatch extends React.Component {
             <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
           </div>
           <h1 className="timer-state">{this.state.timer}</h1>
-          <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5">Set Time</button>
+          <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">Set Time</button>
         </div>
       );
     }
