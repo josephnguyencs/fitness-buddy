@@ -2,7 +2,7 @@ import React from 'react';
 
 function Description(props) {
   return (
-    <td>{props.description}</td>
+    <td colSpan="2" className="py-2">{props.description}</td>
   );
 }
 
