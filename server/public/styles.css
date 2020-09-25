@@ -205,5 +205,5 @@
 .add-exercise {
   position: sticky;
   width: 100%;
-  top: 75px;
+  bottom: 75px;
 }
