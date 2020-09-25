@@ -17,7 +17,6 @@ class TableRow extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     if (this.state.isClicked === true) {
       return (
 

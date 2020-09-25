@@ -62,7 +62,6 @@ class Custom extends React.Component {
     return (
       <div>
         <Header />
-
         <h2 className="text-center mt-3">Add Entry</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -76,24 +75,11 @@ class Custom extends React.Component {
               placeholder="Describe your exercise here..." defaultValue={this.state.desc}
               onChange={this.handleDescChange}></textarea>
           </div>
-
           <div className="row justify-content-center">
             <button type="submit" className="btn btn-success">Add Exercise</button>
             <button type="button" className="btn btn-danger ml-3" onClick={this.props.handleCancelClick}>Cancel</button>
           </div>
         </form>
-
-        {/* <div className="card">
-          <div className="card-header text-center">Add Entry</div>
-          <input type="text" className="form-control" placeholder="Title"></input>
-          <textarea className="form-control" placeholder="Enter text here.." style={{ height: '15rem' }}></textarea>
-        </div>
-        <div className="row">
-          <div className="col text-center">
-            <a className="btn btn-success col-2 mt-2 mr-2" href="#" role="button">Add</a>
-            <a className="btn btn-danger col-2 mt-2" href="#" role="button" onClick={props.handleCancelClick}>Cancel</a>
-          </div>
-        </div> */}
       </div>
     );
   }

@@ -11,7 +11,6 @@ import CalorieCounter from './calorie-counter';
 import CalorieCounterResult from './calorie-counter-result';
 import RecommendedCalories from './recommended-cal';
 import Stopwatch from './stopwatch';
-import TimerModal from './timer-modal';
 
 class App extends React.Component {
   constructor(props) {
@@ -284,12 +283,6 @@ class App extends React.Component {
           <Header />
           <Stopwatch setView={this.setView}/>
           <Footer setView={this.setView}/>
-        </>
-      );
-    } else if (this.state.view === 'time-modal') {
-      return (
-        <>
-          <TimerModal />
         </>
       );
     }
