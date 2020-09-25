@@ -42,18 +42,18 @@ class Stopwatch extends React.Component {
     let newMin = workoutMin;
     this.workoutInverval = setInterval(() => {
       this.setState(({ workoutSec: parseInt(newSec) - 1 }), state => {
-        console.log(this.state.workoutSec);
         newSec--;
-        if (this.state.workoutMin > 0 && this.state.workoutSec < 0) {
+        if (this.state.workoutMin > 0 && newSec < 0) {
+          newSec = 59;
           this.setState({
             workoutMin: parseInt(newMin) - 1,
-            workoutSec: 59
+            workoutSec: newSec
           });
           newMin--;
         } else if (this.state.workoutSec < 10 && this.state.workoutSec >= 0) {
           this.setState({ workoutSec: '0' + parseInt(this.state.workoutSec) });
         }
-        if (this.state.workoutSec <= 0 && this.state.workoutMin === '00') {
+        if ((this.state.workoutSec < 0 || this.state.workoutSec === '00') && (this.state.workoutMin === '00' || this.state.workoutMin <= 0)) {
           clearInterval(this.workoutInverval);
           this.setState({
             workoutMin: workoutMin,
@@ -71,18 +71,18 @@ class Stopwatch extends React.Component {
     let newSec = restSec;
     this.restInterval = setInterval(() => {
       this.setState(({ restSec: parseInt(newSec) - 1 }), state => {
-        console.log(this.state.restSec);
         newSec--;
         if (this.state.restMin > 0 && this.state.restSec < 0) {
+          newSec = 59;
           this.setState({
             restMin: parseInt(newMin) - 1,
-            restSec: 59
+            restSec: newSec
           });
           newMin--;
         } else if (this.state.restSec < 10 && this.state.restSec >= 0) {
           this.setState({ restSec: '0' + parseInt(this.state.restSec) });
         }
-        if (this.state.restSec <= 0 && this.state.restMin === '00') {
+        if ((this.state.restSec < 0 || this.state.restSec === '00') && (this.state.restMin === '00' || this.state.restMin <= 0)) {
           clearInterval(this.restInterval);
           this.setState({
             restMin: restMin,
