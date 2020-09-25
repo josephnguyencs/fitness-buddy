@@ -32,22 +32,28 @@ class Table extends React.Component {
         <>
           <h3 className="text-center mt-5">No exercises added.</h3>
           <div className="row justify-content-center">
-            <button className="btn btn-success margin-top-12 text-center" onClick={this.handleClick}>Add Exercise</button>
+            <button
+              className="btn btn-success margin-top-12 text-center"
+              onClick={this.handleClick}>Add Exercise
+            </button>
           </div>
         </>
       );
     }
     return (
-      <div className="overflow-auto table-container">
-        <div className="container">
-          <table className="w-100 mx-auto">
-            <tbody className="text-center">
+      <div>
+        <div className="main-table-div">
+          <table className="main-table">
+            <tbody className="main-table-body">
               {tableData}
             </tbody>
           </table>
         </div>
         <div className="text-center">
-          <button className="btn btn-success mt-5" onClick={this.handleClick}>Add Exercise</button>
+          <button
+            className="btn btn-success mt-5"
+            onClick={this.handleClick}>Add Exercise
+          </button>
         </div>
       </div>
     );
