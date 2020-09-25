@@ -141,7 +141,7 @@ class Stopwatch extends React.Component {
             <h1>{this.state.workoutMin}:{this.state.workoutSec}</h1>
           </div>
           <h1 className="timer-state">{this.state.timer}</h1>
-          <button onClick={this.handleClick} className="set-time">Set Time</button>
+          <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5">Set Time</button>
         </div>
       );
     }
