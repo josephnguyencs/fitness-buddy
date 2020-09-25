@@ -28,7 +28,12 @@ class Exercises extends React.Component {
                 </button>
               </div>
             </div>
-            <div id={`collapseInner${element.exerciseId}`} className="collapse" data-parent={`#${this.props.bodyPart}-exerciseAccordion`} aria-labelledby={`exerciseHeading${element.exerciseId}`}>
+            <div
+              id={`collapseInner${element.exerciseId}`}
+              className="collapse"
+              data-parent={`#${this.props.bodyPart}-exerciseAccordion`}
+              aria-labelledby={`exerciseHeading${element.exerciseId}`}
+            >
               <div className="card-body">
                 <div>
                   <p>
