@@ -1,7 +1,6 @@
 import React from 'react';
 
 function TimerModal(props) {
-  console.log(props);
   return (
     <div className="fitness-modal-background">
       <div className="fitness-modal-content">
