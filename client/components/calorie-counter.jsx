@@ -47,7 +47,7 @@ class CalorieCounter extends React.Component {
     const height = this.state.height;
     const gender = this.state.genderselect;
     const activity = this.state.activitylevel;
-    if (age && weight && height && activity && gender) {
+    if (age && weight && height && activity && (this.state.genderselect !== 'default')) {
       this.props.caloriesFunction(gender, age, weight, height, activity);
       this.setState({
         calories: this.props.calories,

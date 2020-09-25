@@ -31,7 +31,7 @@ function TimerModal(props) {
             </div>
           </div>
           <div className="form-row justify-content-center mt-5">
-            <button className="btn btn-primary set-time">Set Time</button>
+            <button onClick={props.isClicked} className="btn btn-primary set-time">Set Time</button>
           </div>
         </form>
       </div>
