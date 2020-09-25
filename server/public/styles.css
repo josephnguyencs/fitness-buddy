@@ -69,8 +69,12 @@
 }
 
 .margin-top-12 {
-  margin-top: 12rem;
+   margin-top: 12rem;
+}
 
+.max-width-350 {
+  max-width: 350px;
+}
 .do-not-show {
   visibility: hidden;
 }
