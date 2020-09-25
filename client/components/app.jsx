@@ -244,7 +244,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <Stopwatch />
+          <Stopwatch setView={this.setView}/>
           <Footer setView={this.setView}/>
         </>
       );
