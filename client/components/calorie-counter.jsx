@@ -12,7 +12,7 @@ class CalorieCounter extends React.Component {
       weight: '',
       height: '',
       calories: null,
-      view: 'result'
+      view: 'calorie'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +44,7 @@ class CalorieCounter extends React.Component {
       this.props.caloriesFunction(gender, age, weight, height, activity);
       this.setState({
         calories: this.props.calories,
-        view: 'calorie'
+        view: 'result'
       });
     } else {
       return null;
@@ -63,13 +63,17 @@ class CalorieCounter extends React.Component {
     const activityValue = this.state.activitylevel;
     if (this.state.view === 'result') {
       return (
-        <CalorieCounterResult values={this.state} calories={this.props.calories} handleClick={this.handleClick}/>
+        <CalorieCounterResult
+          values={this.state}
+          calories={this.props.calories}
+          handleClick={this.handleClick}
+        />
       );
     }
     return (
       <div>
         <Header />
-        <div className="container text-center border border-primary">
+        <div className="container text-center">
           <h1 className="calorie-title">Your Info</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -87,7 +91,13 @@ class CalorieCounter extends React.Component {
                       <label>Age</label>
                     </td>
                     <td className="calorie-t-data calorie-t-data-textbox">
-                      <input name="age" type="text" placeholder="Age" value={ageValue} onChange={this.handleChange}/>
+                      <input
+                        name="age"
+                        type="text"
+                        placeholder="Age"
+                        value={ageValue}
+                        onChange={this.handleChange}
+                      />
                     </td>
                   </tr>
                   <tr>
@@ -95,7 +105,13 @@ class CalorieCounter extends React.Component {
                       <label>Weight (lbs)</label>
                     </td>
                     <td className="calorie-t-data calorie-t-data-textbox">
-                      <input name="weight" type="text" placeholder="Weight (lbs)" value={weightValue} onChange={this.handleChange} />
+                      <input
+                        name="weight"
+                        type="text"
+                        placeholder="Weight (lbs)"
+                        value={weightValue}
+                        onChange={this.handleChange}
+                      />
                     </td>
                   </tr>
                   <tr>
@@ -103,7 +119,13 @@ class CalorieCounter extends React.Component {
                       <label>Height (inches)</label>
                     </td>
                     <td className="calorie-t-data calorie-t-data-textbox">
-                      <input name="height" type="text" placeholder="Height (inches)" value={heightValue} onChange={this.handleChange} />
+                      <input
+                        name="height"
+                        type="text"
+                        placeholder="Height (inches)"
+                        value={heightValue}
+                        onChange={this.handleChange}
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -111,7 +133,7 @@ class CalorieCounter extends React.Component {
             </div>
             <div className="form-group">
               <select name="activitylevel" value={activityValue} onChange={this.handleChange}>
-                <option disabled className="calorie-option" value="default">Activity Level</option>
+                <option className="calorie-option" value="default" disabled>Activity Level</option>
                 <option className="calorie-option" value="Sedentary">Sedentary</option>
                 <option className="calorie-option" value="Lightly Active">Lightly Active (1-3 days a week)</option>
                 <option className="calorie-option" value="Moderately Active">Moderately Active (3-5 days a week)</option>

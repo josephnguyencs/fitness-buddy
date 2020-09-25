@@ -26,7 +26,7 @@
 /* } */
 
 .calorie-title {
-  margin: 5% 0% 4% 0%;
+  margin: 8% 0% 13% 0%;
 }
 
 .calorie-option {
@@ -34,7 +34,8 @@
 }
 
 .calorie-submit {
-  margin-top: 7%;
+  margin-top: 12%;
+  padding: 3% 10%;
 }
 
 .lifestyle {
@@ -93,6 +94,7 @@
 
 .margin-top-12 {
   margin-top: 12rem;
+}
 
 .do-not-show {
   visibility: hidden;
