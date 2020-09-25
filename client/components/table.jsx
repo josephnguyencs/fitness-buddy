@@ -41,7 +41,7 @@ class Table extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="overflow-auto table-container">
         <div className="main-table-div">
           <table className="main-table">
             <tbody className="main-table-body">
