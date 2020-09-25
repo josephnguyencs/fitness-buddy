@@ -168,3 +168,7 @@
 .do-not-show {
   visibility: hidden;
 }
+
+.table-container {
+  height: 500px;
+}

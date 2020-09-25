@@ -38,7 +38,7 @@ class Table extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="overflow-auto table-container">
         <div className="container">
           <table className="w-100 mx-auto">
             <tbody className="text-center">
