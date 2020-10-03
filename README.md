@@ -1,5 +1,6 @@
 # fitness-buddy
-Web application for fitness people who want to organize their workouts
+<<<<<<< HEAD
+Phone application for fitness people who want to organize their workouts
 
 ## Technologies Used
 * Figma
@@ -31,3 +32,6 @@ Try the application live at https://fb.joseph-cs.com/
 
 ## Preview
 ![alt text](server/public/images/fitness-buddy-gif.gif)
+=======
+
+>>>>>>> 00e2ed81ae95d7c1b243fb0ca21a2cea30ed60c1
